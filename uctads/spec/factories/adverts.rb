@@ -3,8 +3,8 @@ FactoryGirl.define do
   factory :advert_category, class: Category do
     name 'Some Category'
     fields({
-      'some field' => {:type => 'string', :optional => false},
-      'another' => {:type => 'select', :select => ['ONE','TWO','THREE']}
+      'some field' => {:optional => false},
+      'another field' => {:optional => false, :select => ['ONE','TWO','THREE']}
     })
     parent_id nil
   end
@@ -13,6 +13,9 @@ FactoryGirl.define do
     title "The title of an advert"
     description "Some long piece of descriptive text. It just seems to go on and on."
     category FactoryGirl.create(:advert_category)
-    fieldvalues {}
+    fieldvalues({
+        'some field' => 'a string value',
+        'another field' => 'TWO'
+    })
   end
 end
