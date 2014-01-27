@@ -30,7 +30,4 @@ describe Category do
     t.children[0].build_fields_hash.keys.should == ['some field', 'another', 'sub field']
   end
 
-
-
-
 end
