@@ -11,10 +11,12 @@ FactoryGirl.define do
   factory :advert do
     title "The title of an advert"
     description "Some long piece of descriptive text. It just seems to go on and on."
-    category FactoryGirl.create(:advert_category)
     fieldvalues({
         'some field' => 'a string value',
         'another field' => 'TWO'
     })
+    after :create do |this|
+      this.category = FactoryGirl.create(:advert_category)
+    end
   end
 end

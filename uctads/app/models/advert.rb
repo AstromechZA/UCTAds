@@ -8,7 +8,8 @@ class Advert < ActiveRecord::Base
   validate :fields_validation
 
   def fields_validation
-    message, r = valid_fields(category.build_fields_hash, fieldvalues)
+    fieldsdef = category.nil? ? {} : category.build_fields_hash
+    message, r = valid_fields(fieldsdef, fieldvalues)
     errors[:fieldvalues] << message unless r
   end
 
