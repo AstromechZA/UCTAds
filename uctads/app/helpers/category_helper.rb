@@ -1,10 +1,11 @@
 module CategoryHelper
 
-
+  # Method to generate tree view of categories
+  # This is faster than using recursive partical views.
   def nested_categories_view(categories)
-    categories.map do |category, sub_categories|
-      '<p>' + category.name + '</p><div style="margin-left:20px">' + nested_categories_view(sub_categories) + '</div>'
-    end.join.html_safe
+    ('<ul>' + categories.map do |category, sub_categories|
+      '<li><p>' + category.name + '</p>' + nested_categories_view(sub_categories) + '</li>'
+    end.join + '</ul>').html_safe
   end
 
 end
