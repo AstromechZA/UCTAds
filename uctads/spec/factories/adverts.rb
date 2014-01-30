@@ -6,7 +6,6 @@ FactoryGirl.define do
       'some field' => {:optional => false},
       'another field' => {:optional => false, :select => ['ONE','TWO','THREE']}
     })
-    parent_id nil
   end
 
   factory :advert do

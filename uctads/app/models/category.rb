@@ -1,15 +1,16 @@
 class Category < ActiveRecord::Base
-  has_many :children, class_name: 'Category', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Category'
+  acts_as_tree :order => 'name'
+
   serialize :fields
 
   validates :name, presence: true
 
-
   def build_fields_hash
-    p = parent.nil? ? {} : parent.build_fields_hash
     f = fields.nil? ? {} : fields
-    return p.merge(f)
+    ancestors.each do |a|
+      f = a.fields.merge(f)
+    end
+    return f
   end
 
 
