@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require "capybara/rspec"
+require 'tmpdir'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -46,5 +47,13 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.before(:all) do
+    ENV['FLOCK_DIR'] = Dir.mktmpdir
+  end
+  config.after(:all) do
+    FileUtils.remove_entry_secure ENV['FLOCK_DIR']
+  end
+
   config.include FactoryGirl::Syntax::Methods
+
 end
