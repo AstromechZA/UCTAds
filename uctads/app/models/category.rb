@@ -5,6 +5,8 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true
 
+
+
   def build_fields_hash
     f = fields.nil? ? {} : fields
     ancestors.each do |a|
@@ -12,6 +14,5 @@ class Category < ActiveRecord::Base
     end
     return f
   end
-
 
 end

@@ -1,5 +1,5 @@
 Uctads::Application.routes.draw do
-  get "category/index"
-  get "category/tree"
+
+  resources :categories, only: [:index, :show, :new, :create, :edit, :update]
 
 end

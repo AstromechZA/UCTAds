@@ -1,0 +1,21 @@
+- fields = @category.fields.nil? ? {} : @category.fields
+%p
+  = 'Name: '
+  = @category.name
+%p
+  = 'Fields: '
+  = fields.length
+- fields.each_pair do |name, a|
+  %div
+    %p
+      = name
+      - if a[:optional]
+        %i (Optional)
+    - if a.has_key?(:select)
+      %p Select
+      %div
+        - a[:select].each do |option|
+          %p
+            = option
+
+= link_to('Edit', [:edit, @category])
