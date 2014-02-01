@@ -6,6 +6,7 @@ class @CategoryBuilder
     return @__id_count
 
   # -- ID string creators --
+
   @field_id: (i) ->
     'field' + i
 
@@ -29,6 +30,8 @@ class @CategoryBuilder
 
   # -------------------------
 
+  # -- Element creation methods --
+
   # Create initial visible form. Anchor it to an
   # element with id #category_builder_form_anchor
   @create_form: () ->
@@ -48,8 +51,9 @@ class @CategoryBuilder
     "
     $('#category_builder_form_anchor').append(html)
 
-  # Add another field to the category builder
-  @add_field_container_of_id: (i) ->
+  # Add a field container to the category
+  @add_field_container: ->
+    i = @new_id()
     html = "<div id='#{@field_id(i)}'>
         <p>Name:
             <input class='name_box'
@@ -72,25 +76,31 @@ class @CategoryBuilder
                    onclick='CategoryBuilder.toggle_selectable(#{i});'
                    type='checkbox'
                    value='Selectable' />
-        </p></div>
+        </p>
+        <div id=#{@field_selectables_wrap_id(i)} style='display: none;'>
+          <div id=#{@field_selectables_list_id(i)}></div>
+          <a onclick='CategoryBuilder.add_empty_selectable_to(#{i});'
+               href='javascript:void(0);'>Add item</a>
+        </div>
+        <a onclick='CategoryBuilder.remove_field_container(#{i});'
+           href='javascript:void(0);'>remove field</a>
+        </div>
         "
     $('#fields').append(html)
+
+  # Remove the field container with the given id
+  @remove_field_container: (i) ->
+    $('#'+@field_id(i)).remove()
 
   # When a selectable checkbox is toggled, do the correct action
   @toggle_selectable: (i) ->
     if $('#'+@field_selectable_id(i)).is ':checked'
-      $('#'+@field_id(i)).append(@make_selectables_list_html(i))
+      $('#'+@field_selectables_wrap_id(i)).show()
       @add_empty_selectable_to(i)
     else
-      $('#'+@field_selectables_wrap_id(i)).remove()
+      $('#'+@field_selectables_list_id(i)).empty()
+      $('#'+@field_selectables_wrap_id(i)).hide()
 
-  # Generate html for selectables list
-  @make_selectables_list_html: (i) ->
-    "<div id=#{@field_selectables_wrap_id(i)}>
-        <div id=#{@field_selectables_list_id(i)}></div>
-        <a onclick='CategoryBuilder.add_empty_selectable_to(#{i});'
-           href='javascript:void(0);'>Add item</a>
-    </div"
 
   # Add another blank item to a selectables list
   @add_empty_selectable_to: (i) ->
@@ -108,22 +118,7 @@ class @CategoryBuilder
         </p>"
     )
 
-  # Add a field container to the category
-  @add_field_container: ->
-    @add_field_container_of_id(@new_id())
-
-  # Remove the field container with the given id
-  @remove_field_container: (i) ->
-    $('#'+@field_id(i)).remove()
-
-  @generate_params: ->
-    name = $('#cat_name').val()
-    alert n
-
-  @save: ->
-    @generate_params()
-    alert 'save'
-
+  # Remove the selectable with the given id
   @remove_sel_item: (i, id) ->
     # count items in selection set
     selectables_list = $('#'+@field_selectables_list_id(i))
@@ -131,3 +126,15 @@ class @CategoryBuilder
       $('#'+@field_selectable_item_id(i, id)).remove()
     else
       alert 'Cannot have an empty selection list.'
+
+  # -------------------------------
+
+  # -- Saving and Filling methods --
+  @generate_params: ->
+    name = $('#cat_name').val()
+    fids = $('#fields').children.map (div) -> div.id
+    alert fids
+
+  @save: ->
+    @generate_params()
+    alert 'save'
