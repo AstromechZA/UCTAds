@@ -37,4 +37,8 @@ class CategoriesController < ApplicationController
       return r
     end
 
+    def build_parent_tree
+
+    end
+
 end
