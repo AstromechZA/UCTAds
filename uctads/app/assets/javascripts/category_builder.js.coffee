@@ -199,6 +199,6 @@ class @CategoryBuilder
 
   @save: ->
     r = @generate_params()
-
     if r
-      console.log 'submitting'
+      frm = $('#form_wrapper').children('form')[0]
+      frm.submit()
