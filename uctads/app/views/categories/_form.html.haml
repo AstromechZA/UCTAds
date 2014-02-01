@@ -7,7 +7,7 @@
 
 = form_for @category do |f|
   = f.text_field :name
-  = f.text_field :fields
+  = f.text_field :fields, value: @category.fields.to_json
 
   %p
     = link_to "Save", 'javascript:void(0);', :onclick => "CategoryBuilder.save();"

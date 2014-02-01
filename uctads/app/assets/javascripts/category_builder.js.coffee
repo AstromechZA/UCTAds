@@ -54,6 +54,26 @@ class @CategoryBuilder
     "
     $('#category_builder_form_anchor').append(html)
 
+    name = $('#category_name').val()
+    fieldsjson = $('#category_fields').val()
+
+    if name != ''
+      $('#cat_name').val(name)
+    if fieldsjson != ''
+      obj = $.parseJSON(fieldsjson)
+      for k,v of obj
+        fieldi = @add_field_container()
+        $('#'+@field_name_id(fieldi)).val(k)
+        if 'optional' of v
+          $('#'+@field_optional_id(fieldi)).prop('checked', v['optional']);
+
+        if 'select' of v
+          $('#'+@field_selectable_id(fieldi)).prop('checked', true);
+          $('#'+@field_selectables_wrap_id(fieldi)).show()
+          for s in v['select']
+            itemi = @add_empty_selectable_to(fieldi)
+            $('#'+@field_selectable_item_text_id(fieldi, itemi)).val(s)
+
   # Add a field container to the category
   @add_field_container: ->
     i = @new_id()
@@ -90,6 +110,7 @@ class @CategoryBuilder
         </div>
         "
     $('#fields').append(html)
+    return i
 
   # Remove the field container with the given id
   @remove_field_container: (i) ->
@@ -120,6 +141,7 @@ class @CategoryBuilder
            href='javascript:void(0);'>remove</a>
         </p>"
     )
+    return c
 
   # Remove the selectable with the given id
   @remove_sel_item: (i, id) ->
