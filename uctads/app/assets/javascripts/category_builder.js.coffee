@@ -28,6 +28,9 @@ class @CategoryBuilder
   @field_selectable_item_id: (fieldi, itemi) ->
     @field_id(fieldi) + '_s' + itemi
 
+  @field_selectable_item_text_id: (fieldi, itemi) ->
+    @field_id(fieldi) + '_s' + itemi + '_text'
+
   # -------------------------
 
   # -- Element creation methods --
@@ -108,7 +111,7 @@ class @CategoryBuilder
     c = @new_id()
     selectables_list.append("
         <p id='#{@field_selectable_item_id(i, c)}'>
-        <input id='item'
+        <input id='#{@field_selectable_item_text_id(i, c)}'
                class='selectable_item'
                type='text' value=''
                name='item'>
@@ -131,10 +134,49 @@ class @CategoryBuilder
 
   # -- Saving and Filling methods --
   @generate_params: ->
-    name = $('#cat_name').val()
-    fids = $('#fields').children.map (div) -> div.id
-    alert fids
+    name = $('#cat_name').val().trim()
+    if name == ''
+        alert 'Cannot save blank category name'
+        return false
+
+    fieldsdict = {}
+    $('#fields').children().each (index, element) =>
+      field = $(element)
+      i = field.attr('id').substring(5)
+      n = $('#'+@field_name_id(i)).val().trim()
+      o = $('#'+@field_optional_id(i)).is ':checked'
+
+      if n == ''
+        alert 'Cannot save blank field names'
+        return false
+
+      fieldsdict[n] = {}
+      fieldsdict[n]['optional'] = o
+
+      s = $('#'+@field_selectable_id(i)).is ':checked'
+      if s
+        slist = []
+        $('#'+@field_selectables_list_id(i)).children().each (index2, element2) =>
+          t = $('#' + $(element2).attr('id') + '_text').val().trim()
+          if t != ''
+            slist.push $('#' + $(element2).attr('id') + '_text').val()
+
+        if slist.length == 0
+          alert 'Selection list must contain text items!'
+          return false
+
+        fieldsdict[n]['select'] = slist
+
+    json = JSON.stringify(fieldsdict)
+
+    # apply values to form fields
+    $('#category_name').val(name)
+    $('#category_fields').val(json)
+
+    return true
 
   @save: ->
-    @generate_params()
-    alert 'save'
+    r = @generate_params()
+
+    if r
+      console.log 'submitting'
