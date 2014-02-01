@@ -1,32 +1,16 @@
 = javascript_include_tag 'category_builder'
 
+%div{id: 'category_builder_form_anchor'}
+
 = form_for @category do |f|
   = f.text_field :name
-  %br
+  = f.text_field :fields
 
-  - if not @category.fields.nil?
-    %div{id: 'fields'}
-      - count = 0
-      - @category.fields.each_pair do |k,v|
-        - count += 1
-        %div.field_container{id: "field#{count}"}
-          %p
-            = 'Name: '
-            = text_field_tag 'name', k, class: 'name_box'
-          %p
-            = 'Optional: '
-            = check_box_tag 'optional', 'Optional', (v.has_key?(:optional) ? v[:optional] : false), class: 'optional_box'
-          %p
-            = 'Select from a list: '
-            = check_box_tag 'selectable', 'Selectable', v.has_key?(:select), id: "field#{count}_is_selectable", onclick: "CategoryBuilder.toggle_selectable(#{count});"
-          - if v.has_key?(:select)
-            %div{id: "field#{count}_selectables"}
-              - v[:select].each do |s|
-                %p
-                  = text_field_tag 'item', s, class: 'selectable_item'
-
-  %p
-    = link_to "Add field", 'javascript:void(0);', :onclick => "CategoryBuilder.add_field_container();"
   %p
     = link_to "Save", 'javascript:void(0);', :onclick => "CategoryBuilder.save();"
     = link_to 'Cancel', @category
+
+:javascript
+    $(document).ready( function() {
+      CategoryBuilder.create_form()
+    });
