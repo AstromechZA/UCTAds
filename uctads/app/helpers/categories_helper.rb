@@ -8,7 +8,12 @@ module CategoriesHelper
         content_tag(:li,
           content_tag(:p,
             link_to(category.name, category) + ' : ' +
-            (category.fields.nil? ? '[]' : category.fields.keys.sort.to_s)
+            (category.fields.nil? ? '[]' : category.fields.keys.sort.to_s) +
+            link_to('x', category,
+                    :confirm => 'Are you sure you want to delete this category and its children?',
+                    :method => :delete,
+                    :action => :delete)
+
           ) + nested_categories_view(children)
         )
       end.join.html_safe

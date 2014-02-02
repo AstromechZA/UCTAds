@@ -32,6 +32,16 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    category = Category.find(params[:id])
+    children = category.descendants
+    children.each do |c|
+      c.delete
+    end
+    category.delete
+    redirect_to categories_path
+  end
+
   private
     def category_params
       r = params.require(:category).permit(:name, :fields, :parent_id)
