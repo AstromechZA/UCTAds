@@ -1,11 +1,14 @@
 = javascript_include_tag 'category_builder'
 
-%div{id: 'category_builder_form_anchor'}
+
 
 %div{id: 'form_wrapper'}
   = form_for @category do |f|
-    = f.text_field :name
-    = f.text_field :fields, value: @category.fields.to_json
+    = f.hidden_field :name
+    = f.hidden_field :fields, value: @category.fields.to_json
+    = f.collection_select(:parent_id, @parents, :id, :name, :include_blank => "(No parent)")
+
+    %div{id: 'category_builder_form_anchor'}
 
     %p
       = link_to "Save", 'javascript:void(0);', :onclick => "CategoryBuilder.save();"
