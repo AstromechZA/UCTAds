@@ -40,12 +40,13 @@ class @CategoryBuilder
   @create_form: () ->
     html = "
     <div class='category_builder_form'>
-      <label for='cat_name'>Name: </label>
+      <label for='cat_name'>Name</label>
       <input id='cat_name'
              type='text' value=''
              name='cat_name'>
       </input>
-      <p>Fields:</p>
+      <br /><br />
+      <label>Fields</label>
       <div id='fields'>
       </div>
       <a onclick='CategoryBuilder.add_field_container();'
