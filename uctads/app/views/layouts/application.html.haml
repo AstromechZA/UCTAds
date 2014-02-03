@@ -1,9 +1,22 @@
 !!!
 %html
   %head
-    %title Uctads
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= content_for?(:title) ? yield(:title) : "UCTads"
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag :application
     = csrf_meta_tags
+    = yield(:head)
   %body
-    = yield
+    %header.navbar.navbar-fixed-top.navbar-inverse
+      %nav.navbar-inner
+        .container
+          %a.brand{:href => "/"} Our First HTML5 haml example
+    #main{:role => "main"}
+      .container
+        .content
+          .row
+            .span12
+              = render 'layouts/messages'
+              = yield
+          %footer
