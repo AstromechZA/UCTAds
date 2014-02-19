@@ -1,0 +1,8 @@
+%h1 Adverts
+
+- @adverts.each do |advert|
+  %p
+    = advert.title
+
+%p
+  = link_to '<i class="icon-plus"></i> Add advert'.html_safe, new_advert_path
