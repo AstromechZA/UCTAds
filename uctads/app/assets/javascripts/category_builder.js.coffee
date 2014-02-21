@@ -44,7 +44,7 @@ class @CategoryBuilder
     <label for='cat_name' class='control-label'>Name</label>
     <input id='cat_name' type='text' value='' name='cat_name' class='form-control' style='width: 300px;' />
   </div>
-  <div class='form-group' style='width: 70%;'>
+  <div class='form-group'>
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <label>Category Fields</label>
@@ -84,9 +84,8 @@ class @CategoryBuilder
     html = "
 <li id='#{@field_id(i)}' class='list-group-item'>
   <div class='form-group'>
-    <label class='col-sm-2 control-label' for='#{@field_name_id(i)}'>Name:</label>
     <div class='col-sm-3'>
-      <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' type='text' value=''></input>
+      <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' placeholder='field name' type='text' value=''></input>
     </div>
 
     <div class='col-sm-1' style='width: auto'>
