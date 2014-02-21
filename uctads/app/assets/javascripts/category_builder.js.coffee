@@ -39,32 +39,28 @@ class @CategoryBuilder
   # element with id #category_builder_form_anchor
   @create_form: () ->
     html = "
-    <div class='category_builder_form'>
-      <div class='form-group'>
-      <label for='cat_name' class='col-sm-2 control-label'>Name</label>
-      <div class='col-sm-4'>
-      <input id='cat_name'
-             type='text' value=''
-             name='cat_name'
-             class='form-control'>
+<div class='category_builder_form'>
+  <div class='form-group'>
+    <label for='cat_name' class='col-sm-2 control-label'>Name</label>
+    <div class='col-sm-4'>
+      <input id='cat_name' type='text' value='' name='cat_name' class='form-control'>
       </input>
-      </div>
-      </div>
-      <div class='row'>
-      <div class='col-sm-2'></div>
-<div class='col-sm-8'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <label>Category Fields</label>
-          <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_field_container();'
-           href='javascript:void(0);'>Add field</a>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-sm-2'></div>
+      <div class='col-sm-8'>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <label>Category Fields</label>
+            <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_field_container();' href='javascript:void(0);'>Add field</a>
+          </div>
+          <ul id='fields' class='list-group'>
+          </ul>
         </div>
-        <ul id='fields' class='list-group panel-body'>
-        </ul>
-
       </div>
     </div>
-    </div>
+  </div>
 </div>
     "
     $('#category_builder_form_anchor').append(html)
@@ -93,40 +89,42 @@ class @CategoryBuilder
   @add_field_container: ->
     i = @new_id()
     html = "
-  <li id='#{@field_id(i)}' class='list-group-item'>
-    <div class='form-group'>
-      <label class='col-sm-2 control-label' for='#{@field_name_id(i)}'>Name:</label>
-      <div class='col-sm-3'>
-        <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' type='text' value=''></input>
-      </div>
-      <div class='col-sm-1'>
-        <div class='checkbox'>
-          <label>
-            <input checked='checked' class='optional_box' id='#{@field_optional_id(i)}' name='optional' type='checkbox' value='Optional'></input>
-            Optional
-          </label>
-        </div>
-      </div>
-      <div class='col-sm-2'>
-        <div class='checkbox'>
-          <label>
-            <input id='#{@field_selectable_id(i)}' onclick='CategoryBuilder.toggle_selectable(#{i});' name='selectable' type='checkbox' value='Select from list'></input>
-            Select from list
-          </label>
-        </div>
-      </div>
-      <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
-        <div id=#{@field_selectables_list_id(i)} class='form-group'></div>
-        <div class='row'>
-          <div class='col-sm-2'></div>
-          <div class='col-sm-3'>
-            <a class='btn btn-success btn-sm' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'>Add item</a>
-          </div>
-        </div>
-      </div>
-      <a onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>remove field</a>
+<li id='#{@field_id(i)}' class='list-group-item'>
+  <div class='form-group'>
+    <label class='col-sm-2 control-label' for='#{@field_name_id(i)}'>Name:</label>
+    <div class='col-sm-3'>
+      <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' type='text' value=''></input>
     </div>
-  </li>
+
+    <div class='col-sm-1' style='width: auto'>
+      <div class='checkbox'>
+        <label>
+          <input checked='checked' class='optional_box' id='#{@field_optional_id(i)}' name='optional' type='checkbox' value='Optional'></input>
+          Optional
+        </label>
+      </div>
+    </div>
+    <div class='col-sm-2' style='width: auto'>
+      <div class='checkbox'>
+        <label>
+          <input id='#{@field_selectable_id(i)}' onclick='CategoryBuilder.toggle_selectable(#{i});' name='selectable' type='checkbox' value='Select from list'></input>
+          Select from list
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
+    <div id=#{@field_selectables_list_id(i)} class='form-group'></div>
+      <div class='row'>
+        <div class='col-sm-2'></div>
+        <div class='col-sm-3'>
+          <a class='btn btn-success btn-sm' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'>Add item</a>
+        </div>
+      </div>
+    </div>
+    <a onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>remove field</a>
+  </div>
+</li>
         "
     $('#fields').append(html)
     return i
