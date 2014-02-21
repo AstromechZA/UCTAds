@@ -84,7 +84,7 @@ class @CategoryBuilder
                    id='#{@field_name_id(i)}'
                    name='name'
                    type='text'
-                   value='Type' />
+                   value='' />
         </p>
         <p>Optional:
             <input checked='checked'
@@ -191,7 +191,7 @@ class @CategoryBuilder
         fieldsdict[n]['select'] = slist
 
     json = JSON.stringify(fieldsdict)
-
+    console.log(json)
     # apply values to form fields
     $('#category_name').val(name)
     $('#category_fields').val(json)
