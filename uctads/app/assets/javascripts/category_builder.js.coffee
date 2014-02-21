@@ -108,13 +108,15 @@ class @CategoryBuilder
       <a class='btn btn-danger btn-xs' onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>Remove</a>
     </div>
   </div>
-  <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
+  <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none; margin-bottom:0; margin-top: 5px;'>
+    <div class='panel-heading'>
+      <label>Selectable Items</label>
+    </div>
     <div id=#{@field_selectables_list_id(i)} class='form-group'></div>
-      <div class='row'>
-        <div class='col-sm-2'></div>
-        <div class='col-sm-3'>
-          <a class='btn btn-success btn-sm' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'>Add item</a>
-        </div>
+    <div class='row'>
+      <div class='col-sm-2'></div>
+      <div class='col-sm-3'>
+        <a class='btn btn-success btn-sm' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'>Add item</a>
       </div>
     </div>
   </div>
