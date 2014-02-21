@@ -6,15 +6,14 @@
     = f.hidden_field :fields, value: @category.fields.to_json
 
     %div.form-group
-      = f.label :parent_id, class: 'col-sm-2 control-label'
-      %div.col-sm-4
-        = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control'}
+      = f.label :parent_id, class: 'control-label'
+      = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control', style: 'width: 300px;'}
 
     %div{id: 'category_builder_form_anchor'}
 
     %p
-      = link_to "Save", 'javascript:void(0);', :onclick => "CategoryBuilder.save();"
-      = link_to 'Cancel', @category
+      = link_to "Save", 'javascript:void(0);', {onclick: "CategoryBuilder.save();", class: 'btn btn-success'}
+      = link_to 'Cancel', @category, {class: 'btn btn-warning'}
 
 :javascript
   $(document).ready( function() {

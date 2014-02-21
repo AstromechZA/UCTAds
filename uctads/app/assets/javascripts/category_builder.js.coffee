@@ -41,24 +41,17 @@ class @CategoryBuilder
     html = "
 <div class='category_builder_form'>
   <div class='form-group'>
-    <label for='cat_name' class='col-sm-2 control-label'>Name</label>
-    <div class='col-sm-4'>
-      <input id='cat_name' type='text' value='' name='cat_name' class='form-control'>
-      </input>
-    </div>
+    <label for='cat_name' class='control-label'>Name</label>
+    <input id='cat_name' type='text' value='' name='cat_name' class='form-control' style='width: 300px;' />
   </div>
-  <div class='row'>
-    <div class='col-sm-2'></div>
-      <div class='col-sm-8'>
-        <div class='panel panel-default'>
-          <div class='panel-heading'>
-            <label>Category Fields</label>
-            <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_field_container();' href='javascript:void(0);'>Add field</a>
-          </div>
-          <ul id='fields' class='list-group'>
-          </ul>
-        </div>
+  <div class='form-group' style='width: 70%;'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <label>Category Fields</label>
+        <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_field_container();' href='javascript:void(0);'>Add field</a>
       </div>
+      <ul id='fields' class='list-group'>
+      </ul>
     </div>
   </div>
 </div>
@@ -112,6 +105,9 @@ class @CategoryBuilder
         </label>
       </div>
     </div>
+    <div class='col-sm-3 pull-right' style='width: auto'>
+      <a onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>remove field</a>
+    </div>
   </div>
   <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
     <div id=#{@field_selectables_list_id(i)} class='form-group'></div>
@@ -122,7 +118,6 @@ class @CategoryBuilder
         </div>
       </div>
     </div>
-    <a onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>remove field</a>
   </div>
 </li>
         "
