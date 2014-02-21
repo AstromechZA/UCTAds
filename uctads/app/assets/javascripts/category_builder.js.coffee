@@ -40,12 +40,16 @@ class @CategoryBuilder
   @create_form: () ->
     html = "
     <div class='category_builder_form'>
-      <label for='cat_name'>Name</label>
+      <div class='form-group'>
+      <label for='cat_name' class='col-sm-2 control-label'>Name</label>
+      <div class='col-sm-4'>
       <input id='cat_name'
              type='text' value=''
-             name='cat_name'>
+             name='cat_name'
+             class='form-control'>
       </input>
-      <br /><br />
+      </div>
+      </div>
       <label>Fields</label>
       <div id='fields'>
       </div>
@@ -78,30 +82,45 @@ class @CategoryBuilder
   # Add a field container to the category
   @add_field_container: ->
     i = @new_id()
-    html = "<div id='#{@field_id(i)}'>
-        <p>Name:
-            <input class='name_box'
+    html = "<div id='#{@field_id(i)}' class='panel panel-default'>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label' for='#{@field_name_id(i)}'>Name:</label>
+          <div class='col-sm-3'>
+            <input class='name_box form-control'
                    id='#{@field_name_id(i)}'
                    name='name'
                    type='text'
                    value='' />
-        </p>
-        <p>Optional:
-            <input checked='checked'
-                   class='optional_box'
-                   id='#{@field_optional_id(i)}'
-                   name='optional'
-                   type='checkbox'
-                   value='Optional' />
-        </p>
-        <p>Select from a list:
-            <input id='#{@field_selectable_id(i)}'
-                   name='selectable'
-                   onclick='CategoryBuilder.toggle_selectable(#{i});'
-                   type='checkbox'
-                   value='Selectable' />
-        </p>
-        <div id=#{@field_selectables_wrap_id(i)} style='display: none;'>
+          </div>
+          <div class='col-sm-1'>
+            <div class='checkbox'>
+              <label>
+                <input checked='checked'
+                       class='optional_box'
+                       id='#{@field_optional_id(i)}'
+                       name='optional'
+                       type='checkbox'
+                       value='Optional' />
+
+                Optional
+              </label>
+            </div>
+          </div>
+          <div class='col-sm-2'>
+            <div class='checkbox'>
+              <label>
+                <input id='#{@field_selectable_id(i)}'
+                       onclick='CategoryBuilder.toggle_selectable(#{i});'
+                       name='selectable'
+                       type='checkbox'
+                       value='Select from list' />
+
+                Select from list
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
           <div id=#{@field_selectables_list_id(i)}></div>
           <a onclick='CategoryBuilder.add_empty_selectable_to(#{i});'
                href='javascript:void(0);'>Add item</a>

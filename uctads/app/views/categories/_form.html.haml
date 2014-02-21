@@ -1,13 +1,14 @@
 = javascript_include_tag 'category_builder'
 
 %div{id: 'form_wrapper'}
-  = form_for @category do |f|
+  = form_for @category, html: {class: 'form-horizontal'} do |f|
     = f.hidden_field :name
     = f.hidden_field :fields, value: @category.fields.to_json
 
     %div.form-group
-      = f.label :parent_id
-      = f.collection_select(:parent_id, @parents, :id, :name, :include_blank => "(No parent)")
+      = f.label :parent_id, class: 'col-sm-2 control-label'
+      %div.col-sm-4
+        = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control'}
 
     %div{id: 'category_builder_form_anchor'}
 
