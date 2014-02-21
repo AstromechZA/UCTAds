@@ -9,7 +9,18 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    @parents = build_parent_tree(Category.hash_tree, nil, 0)
+
+    tree = Category.hash_tree
+    t = tree
+    if not @category.parent.nil?
+      @category.ancestors.reverse_each do |c|
+        t = t[c]
+      end
+    end
+    t.except!(@category)
+
+    @parents = build_parent_tree(tree, nil, 0)
+
   end
 
   def update
