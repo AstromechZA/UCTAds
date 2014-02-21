@@ -83,7 +83,7 @@ class @CategoryBuilder
     i = @new_id()
     html = "
 <li id='#{@field_id(i)}' class='list-group-item'>
-  <div class='form-group'>
+  <div class='form-group' style='margin-bottom:0;'>
     <div class='col-sm-3'>
       <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' placeholder='field name' type='text' value=''></input>
     </div>
