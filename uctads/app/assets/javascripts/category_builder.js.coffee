@@ -106,7 +106,7 @@ class @CategoryBuilder
       </div>
     </div>
     <div class='col-sm-3 pull-right' style='width: auto'>
-      <a onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>remove field</a>
+      <a class='btn btn-danger btn-xs' onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>Remove</a>
     </div>
   </div>
   <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none;'>
