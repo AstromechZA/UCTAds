@@ -27,11 +27,11 @@ class AdvertsController < ApplicationController
   private
 
     def advert_category_param
-      params.require(:category).permit(:category_id)
+      params.require(:advert).permit(:category_id)
     end
 
     def advert_form_params
-      params.require(:category).permit(:title, :description, :fieldvalues, :category_id)
+      params.require(:advert).permit(:title, :description, :fieldvalues, :category_id)
     end
 
 end

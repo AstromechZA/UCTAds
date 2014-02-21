@@ -1,4 +1,12 @@
+= javascript_include_tag 'advert_stage_one'
+
 %h1
   = 'Choose a category for your advert:'
 
 = nested_categories_tree(@categories)
+
+%div{id: 'form_wrapper'}
+  = form_for @advert, url: {action: 'new_ad_form', id: @advert} do |f|
+    = f.hidden_field :category_id
+    %p
+      = link_to 'Cancel', adverts_path
