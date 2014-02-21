@@ -10,7 +10,7 @@ module CategoriesHelper
             link_to(category.name, category) + ' : ' +
             (category.fields.nil? ? '[]' : category.fields.keys.sort.to_s) +
             link_to('x', category,
-                    :confirm => 'Are you sure you want to delete this category and its children?',
+                    :data => { confirm: 'Are you sure you want to delete this category and its children?' },
                     :method => :delete,
                     :action => :delete)
 
