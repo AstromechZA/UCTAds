@@ -8,10 +8,11 @@
 .page-header
   %h1
     New Advert
-    %small= @category.name
+    %small= @advert.category.name
 
-#form_wrapper
+#form-wrapper
   = form_for @advert, html: {class: 'form-horizontal'} do |f|
+    = f.hidden_field :fieldvalues, value: @advert.fieldvalues.to_json
     = f.hidden_field :category_id, value: @advert.category_id
     .form-group
       = f.label :title, class: 'col-sm-2 control-label required-label'
@@ -21,7 +22,7 @@
     .form-group
       %label.col-sm-2.control-label Category
       .col-sm-6
-        %p.form-control-static= @category.name
+        %p.form-control-static= @advert.category.name
 
     .form-group
       = f.label :description, class: 'col-sm-2 control-label required-label'
@@ -29,24 +30,23 @@
         = f.text_area :description, class: 'form-control', rows: 8
 
     .form-group
-      %label.col-sm-2.control-label Details
+      %label.col-sm-2.control-label Essentials
       .col-sm-10
         .form-group
           - @fieldsdef.each_pair do |name,ops|
             .col-sm-5
               .input-group{style: 'margin-bottom:10px;'}
                 %span.input-group-addon{style: 'background-color: #EEE;'}
-                  %strong{class: (ops[:optional] ? '' : 'required-label')}
-                    = name
+                  %strong{class: (ops[:optional] ? '' : 'required-label')}= name
+                  - if ops[:optional]
+                    %i (Optional)
                 - if ops[:select]
-                  %select.form-control.better-select-box{id: "field_#{name}"}
-                    - if ops[:optional]
-                      %option= ''
+                  %select.form-control.better-select-box.field-value-input{id: "field_#{name}", name: name}
+                    %option= ''
                     - ops[:select].each do |i|
                       %option= i
                 - else
-                  %input.form-control{type: 'text', value: '', name: 'fv', id: "field_#{name}"}
-
+                  %input.form-control.field-value-input{type: 'text', value: '', name: name, id: "field_#{name}"}
 
     .clearfix
     .form-group
@@ -54,9 +54,21 @@
       .col-sm-10
         %p{style: 'color: #F00'}= "* indicates a required field"
 
+    - if not @advert.errors.empty?
+      .form-group
+        .col-sm-2
+        .col-sm-10
+          - @advert.errors.each do |attribute, error|
+            .alert.alert-danger.alert-dismissable
+              %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+                &times;
+              = error
+
     .form-group
       .col-sm-12
         .pull-right
-          = link_to 'Save', 'javascript:void(0);', onclick: '$("#new_advert").submit()', class: 'btn btn-info'
-          = link_to 'Back', adverts_new_path, class: 'btn btn-default'
+          = link_to 'Save', 'javascript:void(0);', onclick: 'AdvertStageTwoBuilder.submit()', class: 'btn btn-info'
+          = link_to 'Back', new_advert_path, class: 'btn btn-default'
           = link_to 'Cancel', adverts_path, class: 'btn btn-default'
+
+= javascript_include_tag 'advert_stage_two'

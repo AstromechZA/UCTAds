@@ -10,17 +10,18 @@ class AdvertsController < ApplicationController
   end
 
   def new_ad_form
-    @category = Category.find(advert_category_param[:category_id])
+    category = Category.find(advert_category_param[:category_id])
     @advert = Advert.new
-    @advert.category = @category
-    @fieldsdef = @category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
+    @advert.category = category
+    @fieldsdef = category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
   end
 
   def create
-    advert = Category.new(advert_form_params)
-    if advert.save
-        redirect_to advert
+    @advert = Advert.new(advert_form_params)
+    if @advert.save
+        redirect_to @advert, notice: "Advert successfully created."
     else
+        @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
         render action: 'new_ad_form'
     end
   end
@@ -32,7 +33,9 @@ class AdvertsController < ApplicationController
     end
 
     def advert_form_params
-      params.require(:advert).permit(:title, :description, :fieldvalues, :category_id)
+      r = params.require(:advert).permit(:title, :description, :fieldvalues, :category_id)
+      r['fieldvalues'] = JSON.parse(r['fieldvalues'])
+      return r
     end
 
 end

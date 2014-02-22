@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   acts_as_tree :order => 'name'
 
-  serialize :fields
+  serialize :fields, Hash
 
   validates :name, presence: {message: 'Category name cannot be blank'}
   validate :cant_have_dupl_name, :cant_have_conflicting_fields
@@ -40,11 +40,6 @@ class Category < ActiveRecord::Base
         errors.add(:fields, "Fields (#{conflicts.join(' ')}) conflict with descendant #{d.name}")
       end
     end
-  end
-
-  def cant_have_duplicate_selectables
-
-
   end
 
 end

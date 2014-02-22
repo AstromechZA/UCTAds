@@ -1,31 +1,44 @@
 class Advert < ActiveRecord::Base
   belongs_to :category
 
-  serialize :fieldvalues
+  serialize :fieldvalues, Hash
 
-  validates :title, presence: true, length: {minimum: 10}
+  validate :title_must_be_valid, :description_must_be_valid, :all_fields_must_match_fielddefs
 
-  validate :fields_validation
+  # -- model validation
 
-  def fields_validation
-    fieldsdef = category.nil? ? {} : category.build_fields_hash
-    message, r = valid_fields(fieldsdef, fieldvalues)
-    errors[:fieldvalues] << message unless r
+  def title_must_be_valid
+    if not title.present?
+      errors.add(:title, 'Advert title cannot be shorter than 10 characters')
+    elsif title.length < 10
+      errors.add(:title, 'Advert title cannot be blank')
+    end
   end
 
-  def valid_fields(fieldsdef, fieldsval)
-    # for each field definition
-    fieldsdef.each_pair do |k,v|
-      # if the field is in the values
-      if fieldsval.include? k and fieldsval[k].present?
-        if v.include? :select and not v[:select].include? fieldsval[k]
-          return "'#{k}'' must be one of #{v.select}.", false
+  def description_must_be_valid
+    if not description.present?
+      errors.add(:description, 'Advert description must be valid')
+    end
+  end
+
+  def all_fields_must_match_fielddefs
+    fielddefs = category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
+
+    # check extra fields
+    extras = fieldvalues.keys - fielddefs.keys
+    if not extras.empty?
+      errors.add(:fieldvalues, "Unknown fields (#{extras.join(', ')})")
+    end
+
+    fielddefs.each_pair do |name, options|
+      if fieldvalues.include? name and fieldvalues[name].present?
+        if options.include? :select and not options[:select].include? fieldvalues[name]
+          errors.add(:fieldvalues, "Field '#{name}' must be one of #{options.select.join(', ')}")
         end
-      elsif not v[:optional]
-        return "'#{k}' is required.", false
+      elsif not options[:optional]
+        errors.add(:fieldvalues, "Field '#{name}' is required")
       end
     end
-    return '', true
   end
 
 end
