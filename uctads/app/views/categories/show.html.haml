@@ -8,6 +8,10 @@
 
 - fields = @category.fields.nil? ? {} : @category.fields
 
+%p
+  %strong Inherits fields:
+  = "(#{@category.ancestors.map {|a| a.fields.keys}.flatten.join(', ')})"
+
 .panel.panel-default
   .panel-heading
     .panel-title= "Category Fields (#{(fields.size > 0) ? fields.size : 'None'})"
