@@ -14,7 +14,7 @@
 
     #category_builder_form_anchor
 
-    - if @category.errors
+    - if not @category.errors.empty?
       .alert.alert-danger.alert-dismissable
         %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
           &times;

@@ -9,24 +9,17 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-
-    tree = Category.hash_tree
-    t = tree
-    if not @category.parent.nil?
-      @category.ancestors.reverse_each do |c|
-        t = t[c]
-      end
-    end
-    t.except!(@category)
-
-    @parents = build_parent_tree(tree, nil, 0)
-
+    @parents = build_parent_tree(tree_without_self(@category), nil, 0)
   end
 
   def update
-    category = Category.find(params[:id])
-    category.update_attributes!(category_params)
-    redirect_to category
+    @category = Category.find(params[:id])
+    if @category.update_attributes(category_params)
+      redirect_to @category, notice: "Category '#{@category.name}' successfully updated."
+    else
+      @parents = build_parent_tree(tree_without_self(@category), nil, 0)
+      render action: 'edit'
+    end
   end
 
   def new
@@ -69,6 +62,18 @@ class CategoriesController < ApplicationController
         build_parent_tree(v, o, i+2)
       end
       return o
+    end
+
+    def tree_without_self(c)
+      tree = Category.hash_tree
+      t = tree
+      if not c.parent.nil?
+        c.ancestors.reverse_each do |c|
+          t = t[c]
+        end
+      end
+      t.except!(c)
+      return tree
     end
 
 end

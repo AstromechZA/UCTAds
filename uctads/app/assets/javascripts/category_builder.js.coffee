@@ -1,9 +1,11 @@
+if not window.__category_builder_id_count
+  window.__category_builder_id_count = 0
+
 class @CategoryBuilder
 
-  @__id_count = 0
   @new_id: ->
-    @__id_count += 1
-    return @__id_count
+    window.__category_builder_id_count += 1
+    return window.__category_builder_id_count
 
   # -- ID string creators --
 
@@ -135,9 +137,7 @@ class @CategoryBuilder
     selectables_list = $('#'+@field_selectables_list_id(i))
     c = @new_id()
     selectables_list.append("
-
         <li id='#{@field_selectable_item_id(i, c)}' class='list-group-item' style='padding: 3px;'>
-
             <div class='input-group input-group-sm'>
               <input id='#{@field_selectable_item_text_id(i, c)}'
                     class='selectable_item form-control'
