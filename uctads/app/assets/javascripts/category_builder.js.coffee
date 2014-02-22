@@ -108,15 +108,14 @@ class @CategoryBuilder
       <a class='btn btn-danger btn-xs' onclick='CategoryBuilder.remove_field_container(#{i});' href='javascript:void(0);'>Remove</a>
     </div>
   </div>
-  <div class='panel panel-default' id=#{@field_selectables_wrap_id(i)} style='display: none; margin-bottom:0; margin-top: 5px;'>
-    <div class='panel-heading'>
-      <label>Selectable Items</label>
-    </div>
-    <div id=#{@field_selectables_list_id(i)} class='form-group'></div>
-    <div class='row'>
-      <div class='col-sm-2'></div>
-      <div class='col-sm-3'>
-        <a class='btn btn-success btn-sm' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'>Add item</a>
+  <div class='form-group' id='#{@field_selectables_wrap_id(i)}' style='display: none; margin-bottom:0;'>
+    <div class='col-sm-6'>
+      <div class='panel panel-default' style='margin-bottom:0; margin-top: 10px;'>
+        <div class='panel-heading'>
+          <label>Selectable Items</label>
+          <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'><span class='glyphicon glyphicon-plus'></span></a>
+        </div>
+        <ul id='#{@field_selectables_list_id(i)}' class='list-group'></ul>
       </div>
     </div>
   </div>
@@ -145,9 +144,8 @@ class @CategoryBuilder
     c = @new_id()
     selectables_list.append("
 
-        <div id='#{@field_selectable_item_id(i, c)}' class='row'>
-          <div class='col-sm-2' />
-          <div class='col-sm-3'>
+        <li id='#{@field_selectable_item_id(i, c)}' class='list-group-item'>
+
             <div class='input-group'>
               <input id='#{@field_selectable_item_text_id(i, c)}'
                     class='selectable_item form-control'
@@ -157,8 +155,7 @@ class @CategoryBuilder
                 <a class='btn btn-default' onclick='CategoryBuilder.remove_sel_item(#{i}, #{c});' href='javascript:void(0);'>x</a>
               </span>
             </div>
-          </div>
-        </div>"
+        </li>"
     )
     return c
 
