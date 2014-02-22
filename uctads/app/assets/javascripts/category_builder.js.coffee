@@ -41,10 +41,6 @@ class @CategoryBuilder
     html = "
 <div class='category_builder_form'>
   <div class='form-group'>
-    <label for='cat_name' class='control-label'>Name</label>
-    <input id='cat_name' type='text' value='' name='cat_name' class='form-control' style='width: 300px;' />
-  </div>
-  <div class='form-group'>
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <label>Category Fields</label>
@@ -58,11 +54,8 @@ class @CategoryBuilder
     "
     $('#category_builder_form_anchor').append(html)
 
-    name = $('#category_name').val()
     fieldsjson = $('#category_fields').val()
 
-    if name != ''
-      $('#cat_name').val(name)
     if fieldsjson != ''
       obj = $.parseJSON(fieldsjson)
       for k,v of obj
@@ -85,9 +78,8 @@ class @CategoryBuilder
 <li id='#{@field_id(i)}' class='list-group-item'>
   <div class='form-group' style='margin-bottom:0;'>
     <div class='col-sm-3'>
-      <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' placeholder='field name' type='text' value=''></input>
+      <input class='name_box form-control' id='#{@field_name_id(i)}' name='name' placeholder='Field name' type='text' value=''></input>
     </div>
-
     <div class='col-sm-1' style='width: auto'>
       <div class='checkbox'>
         <label>
@@ -144,9 +136,9 @@ class @CategoryBuilder
     c = @new_id()
     selectables_list.append("
 
-        <li id='#{@field_selectable_item_id(i, c)}' class='list-group-item'>
+        <li id='#{@field_selectable_item_id(i, c)}' class='list-group-item' style='padding: 3px;'>
 
-            <div class='input-group'>
+            <div class='input-group input-group-sm'>
               <input id='#{@field_selectable_item_text_id(i, c)}'
                     class='selectable_item form-control'
                     type='text' value=''
@@ -172,11 +164,6 @@ class @CategoryBuilder
 
   # -- Saving and Filling methods --
   @generate_params: ->
-    name = $('#cat_name').val().trim()
-    if name == ''
-        alert 'Cannot save blank category name'
-        return false
-
     fieldsdict = {}
     $('#fields').children().each (index, element) =>
       field = $(element)
@@ -208,7 +195,6 @@ class @CategoryBuilder
     json = JSON.stringify(fieldsdict)
     console.log(json)
     # apply values to form fields
-    $('#category_name').val(name)
     $('#category_fields').val(json)
 
     return true
@@ -216,5 +202,5 @@ class @CategoryBuilder
   @save: ->
     r = @generate_params()
     if r
-      frm = $('#form_wrapper').children('form')[0]
+      frm = $('#form-wrapper').children('form')[0]
       frm.submit()

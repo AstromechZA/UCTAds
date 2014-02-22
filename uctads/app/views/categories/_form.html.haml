@@ -1,15 +1,18 @@
 = javascript_include_tag 'category_builder'
 
-%div{id: 'form_wrapper'}
+#form-wrapper
   = form_for @category, html: {class: 'form-horizontal'} do |f|
-    = f.hidden_field :name
     = f.hidden_field :fields, value: @category.fields.to_json
 
-    %div.form-group
+    .form-group
+      = f.label :name, class: 'control-label'
+      = f.text_field :name, {class: 'form-control', style: 'width: 300px;', placeholder: 'Category name'}
+
+    .form-group
       = f.label :parent_id, class: 'control-label'
       = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control', style: 'width: 300px;'}
 
-    %div{id: 'category_builder_form_anchor'}
+    #category_builder_form_anchor
 
     %p
       = link_to "Save", 'javascript:void(0);', {onclick: "CategoryBuilder.save();", class: 'btn btn-success'}
