@@ -6,16 +6,18 @@ module CategoriesHelper
     content_tag(:ul,
       categories.map do |category,children|
         content_tag(:li,
-          content_tag(:p,
-            link_to(category.name, category) + ' : ' +
-            (category.fields.nil? ? '[]' : category.fields.keys.sort.to_s) +
-            link_to('x', category,
+          content_tag(:div,
+            content_tag(:span, nil, {class: 'glyphicon glyphicon-chevron-right', style: 'padding-right: 10px; color: #666;'}) +
+            link_to(category.name, category) +
+            " (#{category.fields.keys.sort.join(', ')})" +
+            link_to(
+              content_tag(:span, nil, {class: 'glyphicon glyphicon-remove'}), category,
                     :data => { confirm: 'Are you sure you want to delete this category and its children?' },
                     :method => :delete,
-                    :action => :delete)
-
-          ) + nested_categories_view(children)
-        )
+                    :action => :delete,
+                    class: 'btn btn-danger btn-xs pull-right'), {class: 'panel-heading'}
+          ) + content_tag(:div, '', {class: 'clearfix'}) + nested_categories_view(children),
+        {class: 'panel panel-default', style: 'margin: 5px 5px 5px 0px;'})
       end.join.html_safe
     )
   end
