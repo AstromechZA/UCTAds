@@ -73,6 +73,15 @@ class @CategoryBuilder
             itemi = @add_empty_selectable_to(fieldi)
             $('#'+@field_selectable_item_text_id(fieldi, itemi)).val(s)
 
+    sel = $('#category_parent_id')[0]
+
+    if sel.selectedIndex > 0
+      $.ajax(url: "/categories/#{sel.options[sel.selectedIndex].value}/ancestor_fields").done (html) ->
+        if html.length > 0
+          $('#inherited-fields').html("Inherited Fields: (#{html})")
+    else
+      $('#inherited-fields').html('')
+
   # Add a field container to the category
   @add_field_container: ->
     i = @new_id()
@@ -204,3 +213,11 @@ class @CategoryBuilder
     if r
       frm = $('#form-wrapper').children('form')[0]
       frm.submit()
+
+  @getInheritedFields: (sel) ->
+    if sel.selectedIndex > 0
+      $.ajax(url: "/categories/#{sel.options[sel.selectedIndex].value}/ancestor_fields").done (html) ->
+        if html.length > 0
+          $('#inherited-fields').html("Inherited Fields: (#{html})")
+    else
+      $('#inherited-fields').html('')

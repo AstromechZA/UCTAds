@@ -47,6 +47,11 @@ class CategoriesController < ApplicationController
     redirect_to categories_path
   end
 
+  def ancestor_fields
+    category = Category.find(params[:id])
+    render :text => category.ancestors.map {|a| a.fields.keys}.flatten.join(', ')
+  end
+
   private
     def category_params
       r = params.require(:category).permit(:name, :fields, :parent_id)

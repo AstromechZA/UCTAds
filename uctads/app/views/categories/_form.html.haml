@@ -10,8 +10,8 @@
 
     .form-group
       = f.label :parent_id, class: 'control-label'
-      = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control', style: 'width: 300px;'}
-
+      = f.collection_select :parent_id, @parents, :id, :name, {include_blank: "(No parent)"}, {class: 'form-control', style: 'width: 300px;', onChange: 'CategoryBuilder.getInheritedFields(this)'}
+      %span#inherited-fields.help-block
     #category_builder_form_anchor
 
     - @category.errors.each do |attribute, error|
