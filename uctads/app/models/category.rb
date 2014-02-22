@@ -3,9 +3,8 @@ class Category < ActiveRecord::Base
 
   serialize :fields
 
-  validates :name, presence: true
-
-
+  validates :name, presence: {message: 'Category name cannot be blank'}
+  validate :cant_have_dupl_name
 
   def build_fields_hash
     f = fields.nil? ? {} : fields
@@ -13,6 +12,12 @@ class Category < ActiveRecord::Base
       f = a.fields.merge(f)
     end
     return f
+  end
+
+  def cant_have_dupl_name
+    if not siblings.index {|s| s.name == name}.nil?
+      errors.add(:name, 'Name conflicts with an adjacent category in the tree')
+    end
   end
 
 end

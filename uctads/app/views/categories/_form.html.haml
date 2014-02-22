@@ -14,6 +14,12 @@
 
     #category_builder_form_anchor
 
+    - if @category.errors
+      .alert.alert-danger.alert-dismissable
+        %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+          &times;
+        = @category.errors.first[1]
+
     %p
       = link_to "Save", 'javascript:void(0);', {onclick: "CategoryBuilder.save();", class: 'btn btn-success'}
       = link_to 'Cancel', @category, {class: 'btn btn-warning'}

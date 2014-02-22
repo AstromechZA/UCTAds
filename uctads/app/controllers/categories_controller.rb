@@ -35,9 +35,10 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(category_params)
-    if category.save
-        redirect_to categories_path, notice: "Category '#{category.name}' successfully created."
+    @category = Category.new(category_params)
+    @parents = build_parent_tree(Category.hash_tree, nil, 0)
+    if @category.save
+        redirect_to categories_path, notice: "Category '#{@category.name}' successfully created."
     else
         render action: 'new'
     end
