@@ -34,5 +34,5 @@
                     %li.list-group-item{style: 'padding:3px'}
                       = item
 
-= link_to('Back', categories_path)
-= link_to('Edit', [:edit, @category])
+= link_to 'Edit', [:edit, @category], class: 'btn btn-info'
+= link_to 'Back', categories_path, class: 'btn btn-default'
