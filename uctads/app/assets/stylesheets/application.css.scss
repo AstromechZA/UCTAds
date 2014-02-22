@@ -29,3 +29,8 @@ body { padding-top: 60px; }
 .better-select-box:hover {
     background: transparent url(image_path('br_down_hover.png')) no-repeat right center;
 }
+
+.better-select-box:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
