@@ -13,6 +13,7 @@ class AdvertsController < ApplicationController
     @category = Category.find(advert_category_param[:category_id])
     @advert = Advert.new
     @advert.category = @category
+    @fieldsdef = @category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
   end
 
   def create

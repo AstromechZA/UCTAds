@@ -1,12 +1,26 @@
 = javascript_include_tag 'advert_stage_one'
 
-%h1
-  = 'Choose a category for your advert:'
+:css
+  ul {
+    list-style: none;
+  }
 
-= nested_categories_tree(@categories)
+  #top-nest-lvl > ul{
+    padding-left: 0px;
+    margin-left: 0px;
+  }
 
-%div{id: 'form_wrapper'}
-  = form_for @advert, url: {action: 'new_ad_form', id: @advert} do |f|
-    = f.hidden_field :category_id
-    %p
-      = link_to 'Cancel', adverts_path
+
+.page-header
+  %h1
+    New Advert
+    %small Choose a Category
+
+#top-nest-lvl.col-sm-10
+  = nested_categories_tree(@categories)
+
+  %div{id: 'form_wrapper'}
+    = form_for @advert, url: {action: 'new_ad_form', id: @advert} do |f|
+      = f.hidden_field :category_id
+      %p
+        = link_to 'Cancel', adverts_path, class: 'btn btn-default'

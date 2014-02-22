@@ -1,14 +1,62 @@
-%div{id: 'form_wrapper'}
+:css
+  .required-label:after {
+    content: " *";
+    color: #F00;
+    font-weight: bold;
+  }
+
+.page-header
+  %h1
+    New Advert
+    %small= @category.name
+
+#form_wrapper
   = form_for @advert, html: {class: 'form-horizontal'} do |f|
     = f.hidden_field :category_id, value: @advert.category_id
-    %div.form-group
-      = f.label :title, class: 'col-sm-2 control-label'
-      %div.col-sm-8
+    .form-group
+      = f.label :title, class: 'col-sm-2 control-label required-label'
+      .col-sm-10
         = f.text_field :title, class: 'form-control'
-    %div.form-group
-      = f.label :description, class: 'col-sm-2 control-label'
-      %div.col-sm-8
+
+    .form-group
+      %label.col-sm-2.control-label Category
+      .col-sm-6
+        %p.form-control-static= @category.name
+
+    .form-group
+      = f.label :description, class: 'col-sm-2 control-label required-label'
+      .col-sm-10
         = f.text_area :description, class: 'form-control', rows: 8
-    %p
-      = link_to 'Save', 'javascript:void(0);', onclick: '$("#new_advert").submit()'
-      = link_to 'Cancel', adverts_path
+
+    .form-group
+      %label.col-sm-2.control-label Details
+      .col-sm-10
+        .form-group
+          - @fieldsdef.each_pair do |name,ops|
+            .col-sm-5
+              .input-group{style: 'margin-bottom:10px;'}
+                %span.input-group-addon{style: 'background-color: #EEE;'}
+                  %strong{class: (ops[:optional] ? '' : 'required-label')}
+                    = name
+                - if ops[:select]
+                  %select.form-control.better-select-box{id: "field_#{name}"}
+                    - if ops[:optional]
+                      %option= ''
+                    - ops[:select].each do |i|
+                      %option= i
+                - else
+                  %input.form-control{type: 'text', value: '', name: 'fv', id: "field_#{name}"}
+
+
+    .clearfix
+    .form-group
+      .col-sm-2
+      .col-sm-10
+        %p{style: 'color: #F00'}= "* indicates a required field"
+
+    .form-group
+      .col-sm-12
+        .pull-right
+          = link_to 'Save', 'javascript:void(0);', onclick: '$("#new_advert").submit()', class: 'btn btn-info'
+          = link_to 'Back', adverts_new_path, class: 'btn btn-default'
+          = link_to 'Cancel', adverts_path, class: 'btn btn-default'

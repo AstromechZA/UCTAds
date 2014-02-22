@@ -14,3 +14,18 @@
 
 @import "bootstrap";
 body { padding-top: 60px; }
+
+
+.better-select-box {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+
+    background: transparent url(image_path('br_down.png')) no-repeat right center;
+}
+
+.better-select-box:hover {
+    background: transparent url(image_path('br_down_hover.png')) no-repeat right center;
+}
