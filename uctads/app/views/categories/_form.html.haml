@@ -14,11 +14,11 @@
 
     #category_builder_form_anchor
 
-    - if not @category.errors.empty?
+    - @category.errors.each do |attribute, error|
       .alert.alert-danger.alert-dismissable
         %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
           &times;
-        = @category.errors.first[1]
+        = error
 
     %p
       = link_to "Save", 'javascript:void(0);', {onclick: "CategoryBuilder.save();", class: 'btn btn-success'}

@@ -1,22 +1,32 @@
+.page-header
+  %h2
+    = @category.name
+    %small
+      = (@category.parent) ? "[category of #{@category.parent.name}]" : '[category]'
+
 - fields = @category.fields.nil? ? {} : @category.fields
-%p
-  = 'Name: '
-  = @category.name
-%p
-  = 'Fields: '
-  = fields.length
-- fields.each_pair do |name, a|
-  %div
-    %p
-      = name
-      - if a[:optional]
-        %i (Optional)
-    - if a.has_key?(:select)
-      %p Select
-      %div
-        - a[:select].each do |option|
-          %p
-            = option
+
+.panel.panel-default
+  .panel-heading
+    .panel-title= "Category Fields (#{(fields.size > 0) ? fields.size : 'None'})"
+  %ul.list-group
+    - fields.each do |k, v|
+      %li.list-group-item
+        .row
+          .col-sm-3{style: 'margin-bottom: 10px;'}
+            %strong Field:
+            = "'#{k}'"
+            %i= v[:optional] ? '(Optional)' : '(Not Optional)'
+        - if v.has_key?(:select)
+          .row
+            .col-sm-6
+              .panel.panel-default{style: 'margin-bottom:0;'}
+                .panel-heading
+                  .panel-title Selectable Items
+                %ul.list-group
+                  - v[:select].each do |item|
+                    %li.list-group-item{style: 'padding:3px'}
+                      = item
 
 = link_to('Back', categories_path)
 = link_to('Edit', [:edit, @category])
