@@ -58,7 +58,7 @@ class AdvertsController < ApplicationController
     end
 
     def advert_form_params
-      r = params.require(:advert).permit(:title, :description, :fieldvalues, :category_id)
+      r = params.require(:advert).permit(:title, :description, :fieldvalues, :category_id, :price, :price_type)
       r['fieldvalues'] = JSON.parse(r['fieldvalues'])
       return r
     end

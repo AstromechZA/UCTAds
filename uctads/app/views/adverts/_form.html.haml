@@ -27,13 +27,9 @@
     .form-group
       = f.label :price, class: 'col-sm-2 control-label required-label'
       .col-sm-3{style:'width:auto'}
-
+        = f.select :price_type, (Advert::PRICE_TYPES.map {|k,v| [v,k]}), {}, {class: 'form-control better-select-box', onChange: 'AdvertStageTwoBuilder.updatePriceField()'}
+      .col-sm-3
         .input-group{style: 'margin-bottom:10px;'}
-          %select.form-control.better-select-box.field-value-input{id: "advert_price_type", name: 'advert[price_type]', onChange: 'AdvertStageTwoBuilder.updatePriceField()'}
-            %option Exact Price
-            %option On Application
-            %option Swap
-            %option Free
           %span#exact-price-field.input-group-addon{style: 'background-color: #EEE;'} R
           = f.text_field :price, {data: {role: 'money', a_sep: '', a_dec: '.'}, class: 'form-control', placeholder: '0.00'}
 
@@ -83,3 +79,13 @@
 = javascript_include_tag 'autoNumeric'
 = javascript_include_tag 'advert_stage_two'
 
+:javascript
+  $(document).ready(function(){
+    var moneyfield = $('input[data-role=money]')
+    moneyfield.autoNumeric('init')
+    moneyfield.keydown(function(event){
+      if(event.keyCode == 13) $(this).autoNumeric('set', $(this).autoNumeric('get'))
+    });
+    AdvertStageTwoBuilder.fillvalues();
+    AdvertStageTwoBuilder.updatePriceField();
+  });
