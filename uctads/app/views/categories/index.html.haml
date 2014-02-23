@@ -11,6 +11,9 @@
 .page-header
   %h1 Categories
 
+= render 'layouts/messages'
+
 #top-nest-lvl.col-sm-10
   = nested_categories_view(@categories)
+
   = link_to 'Add Category'.html_safe, new_category_path, {class: 'btn btn-success'}

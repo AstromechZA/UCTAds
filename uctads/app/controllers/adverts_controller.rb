@@ -47,6 +47,7 @@ class AdvertsController < ApplicationController
 
   def destroy
     advert = Advert.find(params[:id])
+
     advert.delete
     redirect_to adverts_path, notice: "'Advert #{advert.title}' removed."
   end

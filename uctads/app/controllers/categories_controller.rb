@@ -31,20 +31,26 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @parents = build_parent_tree(Category.hash_tree, nil, 0)
     if @category.save
-        redirect_to categories_path, notice: "Category '#{@category.name}' successfully created."
+      redirect_to categories_path, notice: "Category '#{@category.name}' successfully created."
     else
-        render action: 'new'
+      render action: 'new'
     end
   end
 
   def destroy
     category = Category.find(params[:id])
-    children = category.descendants
-    children.each do |c|
-      c.delete
+
+    ads = Advert.where(category_id: category.self_and_descendant_ids)
+    if not ads.empty?
+      redirect_to categories_path, flash: {error: "Category '#{category.name}' cannot be deleted because it contains #{ads.length} adverts"}
+    else
+      children = category.descendants
+      children.each do |c|
+        c.delete
+      end
+      category.delete
+      redirect_to categories_path, notice: "Category '#{category.name}' successfully deleted"
     end
-    category.delete
-    redirect_to categories_path
   end
 
   def ancestor_fields
