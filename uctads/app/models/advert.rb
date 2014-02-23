@@ -3,7 +3,7 @@ class Advert < ActiveRecord::Base
 
   serialize :fieldvalues, Hash
 
-  validate :title_must_be_valid, :description_must_be_valid, :all_fields_must_match_fielddefs
+  validate :title_must_be_valid, :description_must_be_valid, :all_fields_must_match_fielddefs, :price_must_be_valid
 
   PRICE_TYPES = {'exact' => 'Exact Price', 'poa' => 'On Application', 'swap' => 'To Swap', 'free' => 'Free'}
 
@@ -12,14 +12,16 @@ class Advert < ActiveRecord::Base
   def title_must_be_valid
     if not title.present?
       errors.add(:title, 'Advert title cannot be blank')
-    elsif title.length < 10 or title.length > 60
-      errors.add(:title, 'Advert title must be between 10 and 60 characters')
+    elsif title.length < 5 or title.length > 60
+      errors.add(:title, 'Advert title must be between 5 and 60 characters')
     end
   end
 
   def description_must_be_valid
     if not description.present?
-      errors.add(:description, 'Advert description must be valid')
+      errors.add(:description, 'Advert must have a description')
+    elsif description.length < 10 or description.length > 10000
+      errors.add(:description, 'Advert description must be longer than 10 characters')
     end
   end
 
@@ -40,6 +42,15 @@ class Advert < ActiveRecord::Base
       elsif not options[:optional]
         errors.add(:fieldvalues, "Field '#{name}' is required")
       end
+    end
+  end
+
+  def price_must_be_valid
+    if not PRICE_TYPES.include? price_type
+      errors.add(:price_type, "Price type #{price_type} is invalid")
+    end
+    if price_type == 'exact' and (price.nil? or price < 0.00 or price > 99999999.99)
+      errors.add(:price, "Price value '#{price}' is out of the allowed range")
     end
   end
 
