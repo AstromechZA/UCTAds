@@ -9,9 +9,9 @@ class Advert < ActiveRecord::Base
 
   def title_must_be_valid
     if not title.present?
-      errors.add(:title, 'Advert title cannot be shorter than 10 characters')
-    elsif title.length < 10
       errors.add(:title, 'Advert title cannot be blank')
+    elsif title.length < 10 or title.length > 60
+      errors.add(:title, 'Advert title must be between 10 and 60 characters')
     end
   end
 

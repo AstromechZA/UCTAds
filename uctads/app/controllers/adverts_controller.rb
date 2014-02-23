@@ -26,6 +26,10 @@ class AdvertsController < ApplicationController
     end
   end
 
+  def show
+    @advert = Advert.find(params[:id])
+  end
+
   private
 
     def advert_category_param

@@ -1,0 +1,29 @@
+.page-header
+  %h3
+    = @advert.title
+    %small.pull-right= @advert.category.name
+
+.row
+  .col-sm-8
+    %ul.list-group
+      %li.list-group-item.form-group{style: 'height: 200px;'}
+        images
+      %li.list-group-item.form-group{style: 'background-color: #FAFAFA;'}
+        %p{style: 'margin: 0px'}= @advert.description
+      %li.list-group-item.form-group
+        .row
+          - @advert.fieldvalues.each_pair do |name, value|
+            .col-sm-5
+              .input-group
+                %span.input-group-addon{style: 'background-color: #EEE;'}
+                  %strong= name
+                .form-control= value
+
+
+
+  .col-sm-4
+    = link_to 'Edit', [:edit, @advert], {class: 'btn btn-info', style: 'width: 100%; margin-bottom: 20px'}
+    .well
+      price
+    .well{style: 'height: 200px'}
+      Contact area
