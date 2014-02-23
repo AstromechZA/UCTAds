@@ -12,9 +12,13 @@
       %nav.navbar-inner
         .container
           %a.brand{:href => "/"} UCTAds
-    #main{:role => "main"}
-      .container
-        .content
-          .row-fluid
-            = yield
-          %footer
+    #page-wrap.container
+      #content-wrap.content
+        .row-fluid
+          = yield
+        .clearfix
+      .footer
+        %span{style: 'color: #CCC;'}
+          Copyright text and stuff
+
+

@@ -13,8 +13,30 @@
  */
 
 @import "bootstrap";
-body { padding-top: 60px; }
+body {
+  padding-top: 50px;
+  background: url(image_path('bg.png'))
+}
 
+#page-wrap {
+  padding: 0px;
+  box-shadow: 0px 4px 10px #888888;
+}
+
+#content-wrap {
+  background-color: #FFF;
+  min-height: 300px;
+  padding: 20px;
+}
+
+.page-header {
+    margin-top: 20px;
+}
+
+.footer {
+  background-color: rgb(34, 34, 34);
+  padding:10px;
+}
 
 .better-select-box {
     -webkit-appearance: none;
