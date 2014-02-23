@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130142747) do
+ActiveRecord::Schema.define(version: 20140223021922) do
 
   create_table "adverts", force: true do |t|
     t.string   "title"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140130142747) do
     t.text     "fieldvalues"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "price"
+    t.string   "price_type"
   end
 
   create_table "categories", force: true do |t|
