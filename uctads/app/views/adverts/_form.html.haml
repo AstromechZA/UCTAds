@@ -24,6 +24,19 @@
       .col-sm-10
         = f.text_area :description, class: 'form-control', rows: 8
 
+    .form-group
+      = f.label :price, class: 'col-sm-2 control-label required-label'
+      .col-sm-3{style:'width:auto'}
+
+        .input-group{style: 'margin-bottom:10px;'}
+          %select.form-control.better-select-box.field-value-input{id: "advert_price_type", name: 'advert[price_type]', onChange: 'AdvertStageTwoBuilder.updatePriceField()'}
+            %option Exact Price
+            %option On Application
+            %option Swap
+            %option Free
+          %span#exact-price-field.input-group-addon{style: 'background-color: #EEE;'} R
+          = f.text_field :price, {data: {role: 'money', a_sep: '', a_dec: '.'}, class: 'form-control', placeholder: '0.00'}
+
     - if not @fieldsdef.empty?
       .form-group
         %label.col-sm-2.control-label Essentials
@@ -67,4 +80,6 @@
           = link_to 'Back', new_advert_path, class: 'btn btn-default'
           = link_to 'Cancel', adverts_path, class: 'btn btn-default'
 
+= javascript_include_tag 'autoNumeric'
 = javascript_include_tag 'advert_stage_two'
+
