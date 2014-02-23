@@ -45,6 +45,12 @@ class AdvertsController < ApplicationController
     end
   end
 
+  def destroy
+    advert = Advert.find(params[:id])
+    advert.delete
+    redirect_to adverts_path, notice: "'Advert #{advert.title}' successfully created."
+  end
+
   private
 
     def advert_category_param
