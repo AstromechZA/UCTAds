@@ -2,7 +2,7 @@
 
 - @adverts.each do |advert|
   %p
-    = advert.title
+    = link_to advert.title, advert
 
 %p
   = link_to '<i class="icon-plus"></i> Add advert'.html_safe, new_advert_path
