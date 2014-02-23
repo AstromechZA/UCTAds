@@ -12,3 +12,14 @@ class @AdvertStageTwoBuilder
 
     frm = $('#form-wrapper').children('form')[0]
     frm.submit()
+
+  @fillvalues: ->
+    fieldvalsjson = $('#advert_fieldvalues').val()
+    if fieldvalsjson != ''
+      fieldvals = $.parseJSON(fieldvalsjson)
+      for k,v of fieldvals
+        name = '#field_' + k.replace(' ','__')
+        $(name).val(v)
+
+$(document).ready ->
+  AdvertStageTwoBuilder.fillvalues()

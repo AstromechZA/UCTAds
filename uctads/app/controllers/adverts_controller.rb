@@ -30,6 +30,21 @@ class AdvertsController < ApplicationController
     @advert = Advert.find(params[:id])
   end
 
+  def edit
+    @advert = Advert.find(params[:id])
+    @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
+  end
+
+  def update
+    @advert = Advert.find(params[:id])
+    if @advert.update_attributes(advert_form_params)
+      redirect_to @advert, notice: "Advert successfully updated."
+    else
+      @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
+      render action: 'edit'
+    end
+  end
+
   private
 
     def advert_category_param
