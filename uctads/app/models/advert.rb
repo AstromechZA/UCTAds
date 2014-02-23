@@ -33,7 +33,7 @@ class Advert < ActiveRecord::Base
     fielddefs.each_pair do |name, options|
       if fieldvalues.include? name and fieldvalues[name].present?
         if options.include? :select and not options[:select].include? fieldvalues[name]
-          errors.add(:fieldvalues, "Field '#{name}' must be one of #{options.select.join(', ')}")
+          errors.add(:fieldvalues, "Field '#{name}' must be one of #{options[:select].join(', ')}")
         end
       elsif not options[:optional]
         errors.add(:fieldvalues, "Field '#{name}' is required")

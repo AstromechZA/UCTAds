@@ -1,7 +1,11 @@
 FactoryGirl.define do
 
+  sequence :cat_names do |n|
+    "Category Number #{n}"
+  end
+
   factory :category do
-    name 'Some Category'
+    name {FactoryGirl.generate(:cat_names)}
     fields({
       'some field' => {:type => 'string', :optional => false},
       'another' => {:type => 'select', :select => ['ONE','TWO','THREE']}
