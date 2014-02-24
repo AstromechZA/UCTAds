@@ -6,10 +6,10 @@
 
 
 #form-wrapper
-  = form_for @upload, html: {class: 'form-horizontal'} do |f|
-    .form-group
+  = form_for @upload, html: {multipart: true, class: 'form-horizontal'} do |f|
+    .form-group.actions
       = f.label :image, class: 'control-label'
-      = f.file_field :image
+      = f.file_field :image, multiple: true, name: 'upload[image]'
 
     - @upload.errors.each do |attribute, error|
       .alert.alert-danger.alert-dismissable
@@ -18,4 +18,9 @@
         = attribute
         = error
 
-    = f.submit 'Create'
+%ul.thumbnails
+
+:erb
+  <script id="template-upload" type="text/x-tmpl"><div class="upload">{%=o.name%}<div class="progress"><div class="bar" style="width: 0%"></div></div></div></script>
+
+

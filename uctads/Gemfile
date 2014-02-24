@@ -19,6 +19,7 @@ gem 'closure_tree'
 
 gem 'paperclip', '~> 4.1'
 gem 'aws-sdk'
+gem 'jquery-fileupload-rails'
 
 group :doc do
   gem 'sdoc', require: false
