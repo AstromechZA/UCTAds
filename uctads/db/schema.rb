@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223021922) do
+ActiveRecord::Schema.define(version: 20140224123921) do
 
   create_table "adverts", force: true do |t|
     t.string   "title"
@@ -40,5 +40,14 @@ ActiveRecord::Schema.define(version: 20140223021922) do
 
   add_index "category_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "category_anc_desc_udx", unique: true
   add_index "category_hierarchies", ["descendant_id"], name: "category_desc_idx"
+
+  create_table "uploads", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
 end

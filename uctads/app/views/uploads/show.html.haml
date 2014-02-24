@@ -1,0 +1,9 @@
+- title 'Image'
+
+.page-header
+  %h2
+    = 'Image'
+
+= image_tag @upload.image.url(:original)
+= image_tag @upload.image.url(:medium)
+= image_tag @upload.image.url(:thumb)

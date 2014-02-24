@@ -8,4 +8,6 @@ Uctads::Application.routes.draw do
 
   post '/adverts/new_ad_form', to: 'adverts#new_ad_form'
 
+  resources :uploads
+
 end
