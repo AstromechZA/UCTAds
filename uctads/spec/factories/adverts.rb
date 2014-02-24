@@ -7,6 +7,8 @@ FactoryGirl.define do
         'some field' => 'a string value',
         'another' => 'TWO'
     })
+    price_type 'exact'
+    price 12.34
     category { FactoryGirl.create(:category) }
   end
 end
