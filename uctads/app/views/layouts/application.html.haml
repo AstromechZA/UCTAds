@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    %title= content_for?(:title) ? yield(:title) : "UCTads"
+    %title= "UCTads" + (content_for?(:title) ? " : #{yield(:title)}" : '')
     = stylesheet_link_tag :application, :media => "all"
     = javascript_include_tag :application
     = csrf_meta_tags
@@ -15,7 +15,8 @@
     #page-wrap.container
       #content-wrap.content
         .row-fluid
-          = yield
+          .col-sm-12
+            = yield
         .clearfix
       .footer
         %span{style: 'color: #CCC;'}

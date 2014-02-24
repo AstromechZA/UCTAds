@@ -26,9 +26,9 @@
 
     .form-group
       = f.label :price, class: 'col-sm-2 control-label required-label'
-      .col-sm-3{style:'width:auto'}
+      .col-sm-3{style:'width: auto; margin-bottom: 10px;'}
         = f.select :price_type, (Advert::PRICE_TYPES.map {|k,v| [v,k]}), {}, {class: 'form-control better-select-box', onChange: 'AdvertStageTwoBuilder.updatePriceField()'}
-      .col-sm-3
+      #price-field-wrapper.col-sm-3
         .input-group{style: 'margin-bottom:10px;'}
           %span#exact-price-field.input-group-addon{style: 'background-color: #EEE;'} R
           = f.text_field :price, {data: {role: 'money', a_sep: '', a_dec: '.'}, class: 'form-control', placeholder: '0.00'}

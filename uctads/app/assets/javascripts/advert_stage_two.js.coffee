@@ -22,8 +22,10 @@ class @AdvertStageTwoBuilder
         $(name).val(v)
 
   @updatePriceField: ->
-    ntype = $('#advert_price_type').val() != 'exact'
-    $('#advert_price').prop('disabled', ntype)
-    if ntype
+    if $('#advert_price_type').val() != 'exact'
+      $('#price-field-wrapper').hide()
       $('#advert_price').val('')
+    else
+      $('#price-field-wrapper').show()
+
 
