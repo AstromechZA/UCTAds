@@ -1,15 +1,13 @@
-= javascript_include_tag 'advert_stage_one'
+- title 'New Advert'
 
 :css
   ul {
     list-style: none;
   }
-
   #top-nest-lvl > ul{
     padding-left: 0px;
     margin-left: 0px;
   }
-
 
 .page-header
   %h1
@@ -24,3 +22,5 @@
       = f.hidden_field :category_id
       %p
         = link_to 'Cancel', adverts_path, class: 'btn btn-default'
+
+= javascript_include_tag 'advert_stage_one'
