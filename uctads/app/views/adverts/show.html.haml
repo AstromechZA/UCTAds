@@ -8,10 +8,17 @@
 .row
   .col-sm-9
     %ul.list-group
-      %li.list-group-item.form-group{style: 'height: 200px;'}
-        images
-      %li.list-group-item.form-group{style: 'background-color: #FAFAFA;'}
-        %p{style: 'margin: 0px'}= @advert.description
+      %li.list-group-item.item-heading
+        Images
+      %li.list-group-item{style: 'height: 200px;'}
+
+      %li.list-group-item.item-heading
+        Description
+      %li.list-group-item.padding-2
+        .well.description-well
+          %p{style: 'margin: 0px'}= @advert.description
+      %li.list-group-item.item-heading
+        Fields
       %li.list-group-item.form-group{style: 'padding: 5px 10px'}
         .row
           - @advert.fieldvalues.each_pair do |name, value|
