@@ -29,6 +29,7 @@ class AdvertsController < ApplicationController
 
   def show
     @advert = Advert.find(params[:id])
+    @breadcrum = @advert.category.ancestors.reverse + [@advert.category]
   end
 
   def edit

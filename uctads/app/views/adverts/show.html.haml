@@ -1,6 +1,13 @@
 - title @advert.title
 
 .page-header
+
+  %p
+    = link_to "Adverts", adverts_path
+    - @breadcrum.each do |b|
+      = ">"
+      = b.name
+
   %h3
     %span.glyphicon.glyphicon-chevron-right
     = @advert.title
