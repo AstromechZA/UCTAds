@@ -2,6 +2,7 @@
 
 .page-header
   %h3
+    %span.glyphicon.glyphicon-chevron-right
     = @advert.title
     %small.pull-right= @advert.category.name
 
@@ -21,11 +22,11 @@
       %li.list-group-item.item-heading
         Fields
       %li.list-group-item.form-group{style: 'padding: 5px 10px'}
-        .row
+        .row.no-margin
           - @advert.fieldvalues.each_pair do |name, value|
-            .col-sm-5
-              .input-group{style: 'margin: 5px 0px;'}
-                %span.input-group-addon{style: 'background-color: #EEE;'}
+            .col-sm-5.padding-2
+              .input-group.advert-field
+                %span.input-group-addon
                   %strong= name
                 .form-control= value
 

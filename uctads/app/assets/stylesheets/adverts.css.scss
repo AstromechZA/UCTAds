@@ -13,12 +13,16 @@ textarea {
     background-color: #fff;
 }
 
+.no-margin {
+    margin: 0px;
+}
+
 .padding-2 {
     padding: 2px
 }
 
 .item-heading {
-    background-color: #fcfcfc;
+    background-color: #E3ECF3;
     font-weight: bold;
     padding: 5px 8px;
 }
@@ -29,4 +33,17 @@ textarea {
     color: #555;
     text-align: center;
     vertical-align: middle;
+}
+
+.advert-field {
+    margin: 5px;
+}
+
+.advert-field .input-group-addon {
+    background-color: #F6FCFF;
+    border-color: #ddd;
+}
+
+.advert-field .form-control {
+    border-color: #ddd;
 }
