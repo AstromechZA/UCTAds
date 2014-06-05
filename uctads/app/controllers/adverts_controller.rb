@@ -2,6 +2,7 @@ class AdvertsController < ApplicationController
 
   def index
     @adverts = Advert.all
+    @categories = Category.hash_tree
   end
 
   def new

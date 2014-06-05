@@ -1,11 +1,15 @@
 - title 'Adverts'
 
 .page-header
-  %h1 Adverts
+  %h3
+    = "Adverts"
 
-- @adverts.each do |advert|
-  %p
-    = link_to advert.title, advert
-
-%p
-  = link_to '<i class="icon-plus"></i> Add advert'.html_safe, new_advert_path
+.row
+  .col-sm-3
+    = nested_categories_tree_plain(@categories)
+    %p
+      = link_to 'Add advert', new_advert_path
+  .col-sm-9
+    - @adverts.each do |advert|
+      %p
+        = link_to advert.title, advert

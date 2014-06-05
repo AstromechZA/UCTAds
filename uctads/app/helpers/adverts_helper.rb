@@ -18,6 +18,21 @@ module AdvertsHelper
     )
   end
 
+  def nested_categories_tree_plain(categories)
+    content_tag(
+      :ul,
+      categories.map do |category,children|
+        content_tag(
+          :li,
+          content_tag(
+            :div,
+            content_tag(:span, nil) + link_to(category.name, 'javascript:void(0);')
+          ) + nested_categories_tree_plain(children)
+        )
+      end.join.html_safe
+    )
+  end
+
   def format_number_rands(n)
     number_to_currency(n, unit: 'R', precision: 0)
   end

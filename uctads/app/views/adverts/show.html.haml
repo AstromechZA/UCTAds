@@ -20,9 +20,8 @@
       %li.list-group-item.item-heading
         = "Description"
       %li.list-group-item.padding-2
-        .well.description-well
-          %p.no-margin
-            = @advert.description
+        %p.padding-5
+          = @advert.description
       %li.list-group-item.item-heading
         = "Fields"
       %li.list-group-item.padding-2
@@ -35,14 +34,13 @@
                 .form-control= value
 
   .col-sm-3
-
     .panel.panel-default
-      %h1{style: 'text-align:center; margin: 10px 20px;'}
-        - if @advert.price_type == 'exact'
+      - if @advert.price_type == 'exact'
+        %h1{style: 'text-align:center; margin: 10px 20px;'}
           = format_number_rands(@advert.price) + "<small>".html_safe + format_number_cents(@advert.price) + "</small>".html_safe
-        - else
+      - else
+        %h3{style: 'text-align:center; margin: 10px 20px;'}
           = Advert::PRICE_TYPES[@advert.price_type]
-
 
     .well
       = "Contact area"
