@@ -10,18 +10,19 @@
   .col-sm-9
     %ul.list-group
       %li.list-group-item.item-heading
-        Images
+        = "Images"
       %li.list-group-item
         .missing-images-text
-          (No images added)
+          = "(No images added)"
       %li.list-group-item.item-heading
-        Description
+        = "Description"
       %li.list-group-item.padding-2
         .well.description-well
-          %p{style: 'margin: 0px'}= @advert.description
+          %p.no-margin
+            = @advert.description
       %li.list-group-item.item-heading
-        Fields
-      %li.list-group-item.form-group{style: 'padding: 5px 10px'}
+        = "Fields"
+      %li.list-group-item.padding-2
         .row.no-margin
           - @advert.fieldvalues.each_pair do |name, value|
             .col-sm-5.padding-2
@@ -31,19 +32,21 @@
                 .form-control= value
 
   .col-sm-3
-    .row{style: 'margin: 0;'}
-      .col-sm-8{style: 'padding: 0; padding-right: 5px;'}
-        = link_to 'Edit', [:edit, @advert], {class: 'btn btn-info', style: 'width: 100%; margin-bottom: 20px'}
-      .col-sm-4{style: 'padding: 0; padding-left: 5px;'}
-        = link_to('Delete',
-                  {controller: 'adverts', action: 'destroy', id: @advert.id},
-                  {confirm: 'Are you sure you want to delete this advert?', :method => :delete, class: 'btn btn-danger', style: 'width: 100%;'})
+
     .panel.panel-default
       %h1{style: 'text-align:center; margin: 10px 20px;'}
-        %strong
-          - if @advert.price_type == 'exact'
-            = format_number(@advert.price)
-          - else
-            = Advert::PRICE_TYPES[@advert.price_type]
-    .well{style: 'height: 200px'}
-      Contact area
+        - if @advert.price_type == 'exact'
+          = format_number_rands(@advert.price) + "<small>".html_safe + format_number_cents(@advert.price) + "</small>".html_safe
+        - else
+          = Advert::PRICE_TYPES[@advert.price_type]
+
+
+    .well
+      = "Contact area"
+    .row.no-margin
+      .col-sm-6.padding-2
+        = link_to 'Edit', [:edit, @advert], {class: 'btn btn-info', style: 'width: 100%; margin-bottom: 20px'}
+      .col-sm-6.padding-2
+        = link_to('Delete',
+                  {controller: 'adverts', action: 'destroy', id: @advert.id},
+                  {confirm: 'Are you sure you want to delete this advert?', :method => :delete, class: 'btn btn-danger', style: 'width: 100%; margin-bottom: 20px'})

@@ -18,8 +18,13 @@ module AdvertsHelper
     )
   end
 
-  def format_number(n)
-    number_to_currency(n, unit: 'R')
+  def format_number_rands(n)
+    number_to_currency(n, unit: 'R', precision: 0)
+  end
+
+  def format_number_cents(n)
+    n = n % 1
+    "." + (n % 1 * 100).to_i.to_s.rjust(2, '0')
   end
 
 
