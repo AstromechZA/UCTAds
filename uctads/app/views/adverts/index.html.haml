@@ -10,20 +10,18 @@
     %p
       = link_to 'Add advert', new_advert_path
   .col-sm-9
-    %table.table.table-bordered
-      %thead
-        %tr
-          %th= "Image"
-          %th= "Details"
-          %th= "Price"
-      %tbody
-        - @adverts.each do |advert|
-          %tr
-            %td
-            %td
-              = link_to advert.title, advert
-            %td
-              - if advert.price_type == 'exact'
-                = number_to_currency(advert.price, unit: 'R')
-              - else
-                = Advert::PRICE_TYPES[advert.price_type]
+    .panel.panel-default
+      .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+        = "Adverts"
+      %table.table.table-bordered
+        %tbody
+          - @adverts.each do |advert|
+            %tr
+              %td
+              %td
+                = link_to advert.title, advert
+              %td
+                - if advert.price_type == 'exact'
+                  = format_number_pretty(advert.price)
+                - else
+                  = Advert::PRICE_TYPES[advert.price_type]

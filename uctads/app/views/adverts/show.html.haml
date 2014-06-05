@@ -11,8 +11,8 @@
   %h3
     %span.glyphicon.glyphicon-chevron-right
     = @advert.title
-  %div{style: 'text-align: right'}
-    = "Posted: #{time_ago_in_words(@advert.created_at)} ago"
+    %small.pull-right
+      %p= "#{time_ago_in_words(@advert.created_at)} ago"
 
 .row
   .col-sm-9
