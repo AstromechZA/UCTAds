@@ -41,7 +41,7 @@
       %h1{style: 'text-align:center; margin: 10px 20px;'}
         %strong
           - if @advert.price_type == 'exact'
-            = "R#{@advert.price}"
+            = format_number(@advert.price)
           - else
             = Advert::PRICE_TYPES[@advert.price_type]
     .well{style: 'height: 200px'}

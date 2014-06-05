@@ -17,4 +17,10 @@ module AdvertsHelper
       end.join.html_safe
     )
   end
+
+  def format_number(n)
+    number_to_currency(n, unit: 'R')
+  end
+
+
 end
