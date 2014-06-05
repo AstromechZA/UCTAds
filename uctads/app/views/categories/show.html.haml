@@ -8,31 +8,32 @@
 
 - fields = @category.fields.nil? ? {} : @category.fields
 
-%p
-  %strong Inherits fields:
-  = "(#{@category.ancestors.map {|a| a.fields.keys}.flatten.join(', ')})"
+.col-sm-12
+  %p
+    %strong Inherits fields:
+    = "(#{@category.ancestors.map {|a| a.fields.keys}.flatten.join(', ')})"
 
-.panel.panel-default
-  .panel-heading
-    .panel-title= "Category Fields (#{(fields.size > 0) ? fields.size : 'None'})"
-  %ul.list-group
-    - fields.each do |k, v|
-      %li.list-group-item
-        .row
-          .col-sm-3{style: 'margin-bottom: 10px;'}
-            %strong Field:
-            = "'#{k}'"
-            %i= v[:optional] ? '(Optional)' : '(Not Optional)'
-        - if v.has_key?(:select)
+  .panel.panel-default
+    .panel-heading
+      .panel-title= "Category Fields (#{(fields.size > 0) ? fields.size : 'None'})"
+    %ul.list-group
+      - fields.each do |k, v|
+        %li.list-group-item
           .row
-            .col-sm-6
-              .panel.panel-default{style: 'margin-bottom:0;'}
-                .panel-heading
-                  .panel-title Selectable Items
-                %ul.list-group
-                  - v[:select].each do |item|
-                    %li.list-group-item{style: 'padding:3px'}
-                      = item
+            .col-sm-3{style: 'margin-bottom: 10px;'}
+              %strong Field:
+              = "'#{k}'"
+              %i= v[:optional] ? '(Optional)' : '(Not Optional)'
+          - if v.has_key?(:select)
+            .row
+              .col-sm-6
+                .panel.panel-default{style: 'margin-bottom:0;'}
+                  .panel-heading
+                    .panel-title Selectable Items
+                  %ul.list-group
+                    - v[:select].each do |item|
+                      %li.list-group-item{style: 'padding:3px'}
+                        = item
 
-= link_to 'Edit', [:edit, @category], class: 'btn btn-info'
-= link_to 'Back', categories_path, class: 'btn btn-default'
+  = link_to 'Edit', [:edit, @category], class: 'btn btn-info'
+  = link_to 'Back', categories_path, class: 'btn btn-default'

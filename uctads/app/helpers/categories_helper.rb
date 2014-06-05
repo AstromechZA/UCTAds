@@ -8,10 +8,10 @@ module CategoriesHelper
         content_tag(:li,
           content_tag(:div,
             content_tag(:span, nil, {class: 'glyphicon glyphicon-chevron-right', style: 'padding-right: 10px; color: #666;'}) +
-            link_to(category.name, category) +
+            link_to(category.name, show_category_path(category)) +
             " (#{category.fields.keys.sort.join(', ')})" +
             link_to(
-              content_tag(:span, nil, {class: 'glyphicon glyphicon-remove'}), category,
+              content_tag(:span, nil, {class: 'glyphicon glyphicon-remove'}), destroy_category_path(category),
                     :data => { confirm: 'Are you sure you want to delete this category and its children?' },
                     :method => :delete,
                     :action => :delete,

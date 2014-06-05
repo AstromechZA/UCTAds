@@ -10,6 +10,20 @@
     %p
       = link_to 'Add advert', new_advert_path
   .col-sm-9
-    - @adverts.each do |advert|
-      %p
-        = link_to advert.title, advert
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th= "Image"
+          %th= "Details"
+          %th= "Price"
+      %tbody
+        - @adverts.each do |advert|
+          %tr
+            %td
+            %td
+              = link_to advert.title, advert
+            %td
+              - if advert.price_type == 'exact'
+                = number_to_currency(advert.price, unit: 'R')
+              - else
+                = Advert::PRICE_TYPES[advert.price_type]
