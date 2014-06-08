@@ -1,6 +1,5 @@
 class @AdvertStageTwoBuilder
-
-  @submit: ->
+  @submit: () ->
     fieldvals = {}
     $('.field-value-input').each (index, element) ->
       field = element.name
@@ -13,15 +12,15 @@ class @AdvertStageTwoBuilder
     frm = $('#form-wrapper').children('form')[0]
     frm.submit()
 
-  @fillvalues: ->
+  @fillvalues: () ->
     fieldvalsjson = $('#advert_fieldvalues').val()
-    if fieldvalsjson != ''
+    if fieldvaldsjson? and (fieldvalsjson != '')
       fieldvals = $.parseJSON(fieldvalsjson)
       for k,v of fieldvals
-        name = '#field_' + k.replace(' ','__')
+        name = '#field_' + k.replace(' ', '__')
         $(name).val(v)
 
-  @updatePriceField: ->
+  @updatePriceField: () ->
     if $('#advert_price_type').val() != 'exact'
       $('#price-field-wrapper').hide()
       $('#advert_price').val('')
