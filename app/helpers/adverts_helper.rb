@@ -34,7 +34,7 @@ module AdvertsHelper
   end
 
   def format_number_rands(n)
-    number_to_currency(n, unit: 'R', precision: 0, delimiter: ' ')
+    number_to_currency(n, unit: 'R', precision: 0, delimiter: ',')
   end
 
   def format_number_cents(n)
@@ -43,7 +43,7 @@ module AdvertsHelper
   end
 
   def format_number_pretty(n)
-    number_to_currency(n, unit: 'R', precision: ((n%1) > 0.001) ? 2 : 0, delimiter: ' ')
+    number_to_currency(n, unit: 'R', precision: ((n%1) > 0.001) ? 2 : 0, delimiter: ',')
   end
 
 
