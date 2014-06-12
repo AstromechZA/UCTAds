@@ -8,18 +8,19 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar.navbar-fixed-top.navbar-inverse
-      %nav.navbar-inner
-        .container
-          %a.brand{:href => "/"} UCTAds
-    #page-wrap.container
-      #content-wrap.content
-        .row-fluid
-          .col-sm-12
-            = yield
-        .clearfix
-      .footer
-        %span{style: 'color: #CCC;'}
-          Copyright text and stuff
+    #wrap
+      %header.navbar.navbar-fixed-top.navbar-inverse
+        %nav.navbar-inner
+          .container
+            %a.brand{:href => "/"} UCTAds
+      #page-wrap.container
+        #content-wrap.content
+          .row-fluid
+            .col-sm-12
+              = yield
+          .clearfix
+    #footer
+      .container
+        Copyright text and stuff
 
 

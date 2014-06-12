@@ -14,29 +14,33 @@
 
 @import "bootstrap";
 
-body {
-  padding-top: 30px;
-  background: url(image_path('bg.png'))
+html, body {
+  height: 100%
 }
 
-#page-wrap {
-  padding: 0px;
-  box-shadow: 0px 4px 10px #888888;
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px;
+  padding: 0 0  40px;
+}
+
+#footer {
+  height: 40px;
+  background-color: #f5f5f5;
+}
+
+#wrap > .container {
+  padding-top: 40px;
 }
 
 #content-wrap {
-  background-color: #FFF;
-  min-height: 300px;
   padding: 10px 0px;
 }
 
 .page-header {
     margin-top: 20px;
-}
-
-.footer {
-  background-color: rgb(34, 34, 34);
-  padding:10px;
 }
 
 .better-select-box {
@@ -56,8 +60,4 @@ body {
 .better-select-box:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 #000;
-}
-
-.glyphicon {
-  vertical-align: top
 }
