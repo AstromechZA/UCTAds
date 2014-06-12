@@ -11,7 +11,7 @@ module CategoriesHelper
             link_to(category.name, show_category_path(category)) +
             " (#{category.fields.keys.sort.join(', ')})" +
             link_to(
-              content_tag(:i, nil, {class: 'fa fa-minus'}), destroy_category_path(category),
+              content_tag(:i, nil, {class: 'fa fa-trash-o'}), destroy_category_path(category),
                     :data => { confirm: 'Are you sure you want to delete this category and its children?' },
                     :method => :delete,
                     :action => :delete,
