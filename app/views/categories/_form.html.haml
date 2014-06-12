@@ -1,7 +1,7 @@
 = javascript_include_tag 'category_builder'
 
 #form-wrapper
-  = form_for @category, html: {class: 'form-horizontal'} do |f|
+  = form_for @category, url: update_category_path, html: {class: 'form-horizontal'} do |f|
     = f.hidden_field :fields, value: @category.fields.to_json
 
     .form-group
@@ -23,7 +23,7 @@
 
     %p
       = link_to "Save", 'javascript:void(0);', {onclick: "CategoryBuilder.save();", class: 'btn btn-success'}
-      = link_to 'Cancel', @category, {class: 'btn btn-default'}
+      = link_to 'Cancel', show_category_path(@category), {class: 'btn btn-default'}
 
 :javascript
   $(document).ready( function() {

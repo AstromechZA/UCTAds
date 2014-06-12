@@ -19,7 +19,7 @@
             %tr
               %td
               %td
-                = link_to advert.title, advert
+                = link_to advert.title, show_advert_path(advert)
               %td
                 - if advert.price_type == 'exact'
                   = format_number_pretty(advert.price)

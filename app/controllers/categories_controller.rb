@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
-      redirect_to @category, notice: "Category '#{@category.name}' successfully updated."
+      redirect_to show_category_path(@category), notice: "Category '#{@category.name}' successfully updated."
     else
       @parents = build_parent_tree(tree_without_self(@category), nil, 0)
       render action: 'edit'

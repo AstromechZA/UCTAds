@@ -6,7 +6,7 @@
   }
 
 #form-wrapper
-  = form_for @advert, html: {class: 'form-horizontal'} do |f|
+  = form_for @advert, url: update_advert_path, html: {class: 'form-horizontal'} do |f|
     = f.hidden_field :fieldvalues, value: @advert.fieldvalues.to_json
     = f.hidden_field :category_id, value: @advert.category_id
     .form-group

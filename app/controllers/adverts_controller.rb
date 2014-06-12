@@ -20,7 +20,7 @@ class AdvertsController < ApplicationController
   def create
     @advert = Advert.new(advert_form_params)
     if @advert.save
-        redirect_to @advert, notice: "Advert successfully created."
+        redirect_to show_advert_path(@advert), notice: "Advert successfully created."
     else
         @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
         render action: 'new_ad_form'
@@ -40,7 +40,7 @@ class AdvertsController < ApplicationController
   def update
     @advert = Advert.find(params[:id])
     if @advert.update_attributes(advert_form_params)
-      redirect_to @advert, notice: "Advert successfully updated."
+      redirect_to show_advert_path(@advert), notice: "Advert successfully updated."
     else
       @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
       render action: 'edit'

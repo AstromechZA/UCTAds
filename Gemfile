@@ -11,7 +11,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
-gem 'font-awesome-sass-rails'
 
 gem 'jbuilder', '~> 2.0'
 
