@@ -12,7 +12,7 @@
       %nav.navbar.navbar-default.navbar-fixed-top
         .container
           .navbar-header
-            %a.navbar-toggle{ data: {target: '.nav-collapse', toggle: 'collapse'} }
+            %button.navbar-toggle{ type: 'button', data: {target: '.navbar-collapse', toggle: 'collapse'} }
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
@@ -37,5 +37,7 @@
     #footer
       .container
         Copyright text and stuff
+
+    %script{src: "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
 
 
