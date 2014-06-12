@@ -9,10 +9,25 @@
     = yield(:head)
   %body
     #wrap
-      %header.navbar.navbar-fixed-top.navbar-inverse
-        %nav.navbar-inner
-          .container
-            %a.brand{:href => "/"} UCTAds
+      %nav.navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            %a.navbar-toggle{ data: {target: '.nav-collapse', toggle: 'collapse'} }
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "/"} UCTAds
+          .collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              %li
+                %a item
+              %li
+                %a item
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a item
+              %li
+                %a item
       #page-wrap.container
         #content-wrap.content
           .row-fluid
