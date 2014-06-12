@@ -1,15 +1,12 @@
 - title @advert.title
 
-.page-header
-
-  %p
-    = link_to "Adverts", adverts_path
-    - @breadcrumb.each do |b|
-      = ">"
+%ul.breadcrumb{style: "margin-top:10px;"}
+  - @breadcrumb.each do |b|
+    %li
       = b.name
 
+.page-header
   %h3
-    %i.fa.fa-angle-right
     = @advert.title
     %small.pull-right
       %p= "#{time_ago_in_words(@advert.created_at)} ago"
