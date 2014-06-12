@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
 
     ads = Advert.where(category_id: category.self_and_descendant_ids)
     if not ads.empty?
-      redirect_to categories_path, flash: {error: "Category '#{category.name}' cannot be deleted because it contains #{ads.length} adverts"}
+      redirect_to categories_path, error: "Category '#{category.name}' cannot be deleted because it contains #{ads.length} adverts"
     else
       children = category.descendants
       children.each do |c|
