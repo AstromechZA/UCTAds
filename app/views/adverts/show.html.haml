@@ -9,7 +9,9 @@
   %h3
     = @advert.title
     %small.pull-right
-      %p= "#{time_ago_in_words(@advert.created_at)} ago"
+      %p
+        %i.fa.fa-clock-o
+        = "#{time_ago_in_words(@advert.created_at)} ago"
 
 .row
   .col-sm-9
@@ -39,10 +41,10 @@
   .col-sm-3
     .panel.panel-default
       - if @advert.price_type == 'exact'
-        %h1{style: 'text-align:center; margin: 10px 20px;'}
+        %h1.text-center{style: 'margin: 10px 20px;'}
           = format_number_rands(@advert.price) + "<small>".html_safe + format_number_cents(@advert.price) + "</small>".html_safe
       - else
-        %h3{style: 'text-align:center; margin: 10px 20px;'}
+        %h3.text-center{style: 'margin: 10px 20px;'}
           = Advert::PRICE_TYPES[@advert.price_type]
 
     .well
