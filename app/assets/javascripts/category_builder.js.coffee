@@ -116,7 +116,7 @@ class @CategoryBuilder
       <div class='panel panel-default' style='margin-bottom:0; margin-top: 10px;'>
         <div class='panel-heading'>
           <label>Selectable Items</label>
-          <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'><span class='glyphicon glyphicon-plus'></span></a>
+          <a class='btn btn-success btn-xs pull-right' onclick='CategoryBuilder.add_empty_selectable_to(#{i});' href='javascript:void(0);'><i class='fa fa-plus'></i></a>
         </div>
         <ul id='#{@field_selectables_list_id(i)}' class='list-group'></ul>
       </div>

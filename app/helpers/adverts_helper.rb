@@ -8,7 +8,7 @@ module AdvertsHelper
           :li,
           content_tag(
             :div,
-            content_tag(:span, nil, {class: 'glyphicon glyphicon-chevron-right', style: 'padding-right: 10px; color: #666;'}) +
+            content_tag(:i, nil, {class: 'fa fa-angle-right', style: 'padding-right: 10px; color: #666;'}) +
             link_to(category.name, 'javascript:void(0);', onclick: 'AdvertStageOneBuilder.next('+category.id.to_s+')'),
             {class: 'panel-heading'}
           ) + nested_categories_tree(children),
