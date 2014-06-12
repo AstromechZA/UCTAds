@@ -14,7 +14,7 @@ class @AdvertStageTwoBuilder
 
   @fillvalues: () ->
     fieldvalsjson = $('#advert_fieldvalues').val()
-    if fieldvaldsjson? and (fieldvalsjson != '')
+    if fieldvalsjson? and (fieldvalsjson != '')
       fieldvals = $.parseJSON(fieldvalsjson)
       for k,v of fieldvals
         name = '#field_' + k.replace(' ', '__')
