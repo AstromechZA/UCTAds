@@ -67,3 +67,41 @@ html, body {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.navbar-input-group {
+  @media (min-width: 768px) {
+    font-size: 0px; /*removes whitespace between button and input*/
+
+    input {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    .btn {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-left: 0px;
+    }
+  }
+  @media (max-width: 767px) {
+    margin-top:0px;
+    margin-bottom:0px;
+
+    .btn {
+      width:100%;
+    }
+  }
+}
+
+.navbar-button-li {
+  @media (max-width: 767px) {
+    margin-top:0px;
+    margin-bottom:0px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .btn {
+      width:100%;
+    }
+  }
+}

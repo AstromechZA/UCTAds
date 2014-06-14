@@ -21,10 +21,10 @@
               = "UCTAds"
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li
+              %li.navbar-button-li
                 = button_to "Post an Ad!", new_advert_path, method: :get, class: "btn btn-success btn-sm navbar-btn"
 
-            %form.navbar-form.navbar-left.custom-form-sm{role: 'search'}
+            %form.navbar-form.navbar-left.navbar-input-group.custom-form-sm{role: 'search'}
               .form-group
                 %input.form-control.input-sm{type: 'text', placeholder: 'Search ..'}
               %button.btn.btn-info.btn-sm{type: 'submit'}= "Search"
