@@ -29,7 +29,7 @@ module AdvertsHelper
       li_s << content
     end
 
-    content_tag(:ul, li_s.join.html_safe)
+    content_tag(:ul, li_s.join.html_safe, class: 'sidebar-categories')
   end
 
   def format_number_rands(n)

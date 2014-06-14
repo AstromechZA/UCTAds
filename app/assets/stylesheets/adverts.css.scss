@@ -45,13 +45,19 @@ textarea {
 
 .advert-field {
     margin: 5px;
+
+    .input-group-addon {
+        background-color: #F6FCFF;
+        border-color: #ddd;
+    }
+
+    .form-control {
+        border-color: #ddd;
+    }
 }
 
-.advert-field .input-group-addon {
-    background-color: #F6FCFF;
-    border-color: #ddd;
-}
-
-.advert-field .form-control {
-    border-color: #ddd;
+.sidebar-categories {
+    ul {
+        padding-left: 25px;
+    }
 }
