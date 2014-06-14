@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
 
   def index
-    @adverts = Advert.all
+    @adverts = Advert.order(created_at: :desc)
     @categories = Category.hash_tree
   end
 

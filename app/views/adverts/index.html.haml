@@ -27,7 +27,7 @@
                 %td
                   = link_to advert.title, show_advert_path(advert)
                   %p
-                    = advert.description
+                    = text_truncate advert.description, 200
                   %small.text-muted
                     %em
                       = "Posted #{time_ago_in_words(advert.created_at)} ago :"

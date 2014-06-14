@@ -15,4 +15,8 @@ module ApplicationHelper
       }[type] || type.to_s
   end
 
+  def text_truncate(text, limit=100)
+    truncate(text, length: limit, separator: ' ')
+  end
+
 end
