@@ -21,12 +21,12 @@ module AdvertsHelper
   def nested_categories_tree_plain(categories)
     content_tag(
       :ul,
-      categories.map do |category,children|
+      categories.map do |category, children|
         content_tag(
           :li,
           content_tag(
             :div,
-            content_tag(:span, nil) + link_to(category.name, 'javascript:void(0);')
+            content_tag(:span, nil) + link_to(category.name, controller: 'adverts', action: 'index', category: category.id)
           ) + nested_categories_tree_plain(children)
         )
       end.join.html_safe
@@ -45,7 +45,5 @@ module AdvertsHelper
   def format_number_pretty(n)
     number_to_currency(n, unit: 'R', precision: ((n%1) > 0.001) ? 2 : 0, delimiter: ',')
   end
-
-
 
 end

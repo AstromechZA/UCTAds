@@ -9,6 +9,8 @@
     = nested_categories_tree_plain(@categories)
     %p
       = link_to 'Add advert', new_advert_path
+
+
   .col-sm-9
     .panel.panel-default
       .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
@@ -19,23 +21,29 @@
           %col
           %col{style: "width: 10%"}
           %tbody
-            - @adverts.each do |advert|
+            - if @adverts.empty?
               %tr
-                %td.text-center{style: "vertical-align: middle;"}
-                  %h3
-                    %i.fa.fa-photo
-                %td
-                  = link_to advert.title, show_advert_path(advert)
-                  %p
-                    = text_truncate advert.description, 200
-                  %small.text-muted
-                    %em
-                      = "Posted #{time_ago_in_words(advert.created_at)} ago :"
-                    = advert.category.name
-                %td.text-center{style: "vertical-align: middle;"}
-                  %h4
-                    - if advert.price_type == 'exact'
-                      = format_number_pretty(advert.price)
-                    - else
-                      = Advert::PRICE_TYPES[advert.price_type]
+                %td.text-center{colspan: 3}
+                  %i.fa.fa-frown-o
+                  = "Oops, no ads have been posted"
+            - else
+              - @adverts.each do |advert|
+                %tr
+                  %td.text-center{style: "vertical-align: middle;"}
+                    %h3
+                      %i.fa.fa-photo
+                  %td
+                    = link_to advert.title, show_advert_path(advert)
+                    %p
+                      = text_truncate advert.description, 200
+                    %small.text-muted
+                      %em
+                        = "Posted #{time_ago_in_words(advert.created_at)} ago :"
+                      = advert.category.name
+                  %td.text-center{style: "vertical-align: middle;"}
+                    %h4
+                      - if advert.price_type == 'exact'
+                        = format_number_pretty(advert.price)
+                      - else
+                        = Advert::PRICE_TYPES[advert.price_type]
 
