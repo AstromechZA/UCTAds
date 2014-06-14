@@ -22,11 +22,12 @@
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
               %li
-                = link_to "Adverts", adverts_path
-              %li
-                = link_to "Categories", categories_path
-              %li
                 = button_to "Post an Ad!", new_advert_path, method: :get, class: "btn btn-success btn-sm navbar-btn"
+
+            %form.navbar-form.navbar-left.custom-form-sm{role: 'search'}
+              .form-group
+                %input.form-control.input-sm{type: 'text', placeholder: 'Search ..'}
+              %button.btn.btn-info.btn-sm{type: 'submit'}= "Search"
             %ul.nav.navbar-nav.navbar-right
               %li
                 %a item
