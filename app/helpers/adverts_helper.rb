@@ -18,13 +18,18 @@ module AdvertsHelper
     )
   end
 
-  def build_side_bar_tree(categories)
+  def build_side_bar_tree(categories, selected=nil)
 
     li_s = []
 
     categories.keys.sort_by {|k| k.name }.each do |k|
-      content = content_tag(:span, nil) + link_to(k.name, adverts_by_category_path(k))
-      content = content_tag(:div, content) + build_side_bar_tree(categories[k])
+      content = content_tag(:span, nil)
+      if selected.nil? or k.id != selected
+        content += link_to(k.name, adverts_by_category_path(k))
+      else
+        content += link_to(k.name, adverts_by_category_path(k), style: 'font-weight: bold')
+      end
+      content = content_tag(:div, content) + build_side_bar_tree(categories[k], selected)
       content = content_tag(:li, content)
       li_s << content
     end
