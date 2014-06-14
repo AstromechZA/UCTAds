@@ -12,7 +12,6 @@ Uctads::Application.routes.draw do
   get '/categories/:id/ancestor_fields', to: 'categories#ancestor_fields'
 
   # == adverts routing ==
-
   get '/adverts', to: 'adverts#index', as: 'adverts'
   get '/adverts_by_category/:id', to: 'adverts#index_by_category', as: 'adverts_by_category'
   post '/adverts', to: 'adverts#create', as: 'create_advert'
@@ -22,6 +21,8 @@ Uctads::Application.routes.draw do
   patch '/adverts/:id', to: 'adverts#update', as: 'update_advert'
   delete '/adverts/:id', to: 'adverts#destroy', as: 'destroy_advert'
   post '/adverts/new_ad_form', to: 'adverts#new_ad_form'
+
+  root 'adverts#index'
 
   resources :uploads
 

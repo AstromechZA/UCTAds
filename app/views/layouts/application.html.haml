@@ -25,6 +25,8 @@
                 = link_to "Adverts", adverts_path
               %li
                 = link_to "Categories", categories_path
+              %li
+                = button_to "Post an Ad!", new_advert_path, method: :get, class: "btn btn-success btn-sm navbar-btn"
             %ul.nav.navbar-nav.navbar-right
               %li
                 %a item
