@@ -18,19 +18,18 @@ module AdvertsHelper
     )
   end
 
-  def nested_categories_tree_plain(categories)
-    content_tag(
-      :ul,
-      categories.map do |category, children|
-        content_tag(
-          :li,
-          content_tag(
-            :div,
-            content_tag(:span, nil) + link_to(category.name, controller: 'adverts', action: 'index', category: category.id)
-          ) + nested_categories_tree_plain(children)
-        )
-      end.join.html_safe
-    )
+  def build_side_bar_tree(categories)
+
+    li_s = []
+
+    categories.keys.sort_by {|k| k.name }.each do |k|
+      content = content_tag(:span, nil) + link_to(k.name, adverts_by_category_path(k))
+      content = content_tag(:div, content) + build_side_bar_tree(categories[k])
+      content = content_tag(:li, content)
+      li_s << content
+    end
+
+    content_tag(:ul, li_s.join.html_safe)
   end
 
   def format_number_rands(n)

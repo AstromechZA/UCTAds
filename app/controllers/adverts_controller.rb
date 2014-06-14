@@ -1,42 +1,28 @@
 class AdvertsController < ApplicationController
 
   def index
-    # TODO: select only ads in the current category
     @adverts = Advert.order(created_at: :desc)
 
     #nested category tree
-    @categories = {}
+    @category_tree = {}
 
     # roots are always shown in the list
-    Category.roots.each {|r| @categories[r] = {}}
+    Category.roots.each {|r| @category_tree[r] = {}}
+  end
 
-    if params.has_key? :category
-      begin
+  def index_by_category
+    @selected_category = Category.find(params[:id])
 
-        # identify required category
-        selected_category = Category.find(params[:category])
-        # get parents
-        ancestors = selected_category.self_and_ancestors.to_a
+    @category_tree = @selected_category.root.hash_tree
 
-        # hold current context while constructing nested hash
-        context = @categories[ancestors.pop]
-        while not ancestors.empty?
-          # add next generation parent to context
-          context[ancestors.last] = {}
-          # move down a generation
-          context = context[ancestors.pop]
-        end
-
-        # add the children
-        selected_category.children.each do |child|
-          context[child] = {}
-        end
-
-      rescue ActiveRecord::RecordNotFound => e
-        # absorb
+    # roots are always shown in the list
+    Category.roots.each do |r|
+      unless @category_tree.has_key? r
+        @category_tree[r] = {}
       end
     end
 
+    @adverts = Advert.order(created_at: :desc)
   end
 
   def new

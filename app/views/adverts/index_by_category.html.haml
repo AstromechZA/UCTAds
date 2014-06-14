@@ -1,8 +1,8 @@
-- title 'Adverts'
+- title @selected_category.name
 
 .page-header
   %h3
-    = "Adverts"
+    = @selected_category.name
 
 .row
   .col-sm-3
@@ -14,7 +14,7 @@
   .col-sm-9
     .panel.panel-default
       .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
-        = "Adverts"
+        = "Adverts: #{@selected_category.name}"
       .table-responsive
         %table.table.table-bordered
           %col{style: "width: 120px"}

@@ -14,6 +14,7 @@ Uctads::Application.routes.draw do
   # == adverts routing ==
 
   get '/adverts', to: 'adverts#index', as: 'adverts'
+  get '/adverts_by_category/:id', to: 'adverts#index_by_category', as: 'adverts_by_category'
   post '/adverts', to: 'adverts#create', as: 'create_advert'
   get '/adverts/new', to: 'adverts#new', as: 'new_advert'
   get '/adverts/:id', to: 'adverts#show', as: 'show_advert'
