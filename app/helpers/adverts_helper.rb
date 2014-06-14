@@ -1,25 +1,20 @@
 module AdvertsHelper
 
   def nested_categories_tree(categories)
-    content_tag(
-      :ul,
-      categories.map do |category,children|
-        content_tag(
-          :li,
-          content_tag(
-            :div,
-            content_tag(:i, nil, {class: 'fa fa-angle-right', style: 'padding-right: 10px; color: #666;'}) +
-            link_to(category.name, 'javascript:void(0);', onclick: 'AdvertStageOneBuilder.next('+category.id.to_s+')'),
-            {class: 'panel-heading'}
-          ) + nested_categories_tree(children),
-          {class: 'panel panel-default', style: 'margin: 5px 5px 5px 0px;'}
-        )
-      end.join.html_safe
-    )
+    li_s = []
+
+    categories.keys.each do |k|
+      content = content_tag(:i, nil, {class: 'fa fa-angle-right', style: 'padding-right: 10px;'})
+      content = link_to( content + k.name, 'javascript:void(0);', onclick: 'AdvertStageOneBuilder.next('+k.id.to_s+')')
+      content = content_tag(:div, content, {class: 'panel-heading panel-heading-sm'}) + nested_categories_tree(categories[k])
+      content = content_tag(:li, content, {class: 'panel panel-default', style: 'margin: 5px 5px 5px 0px;'})
+      li_s << content
+    end
+
+    content_tag(:ul, li_s.join.html_safe)
   end
 
   def build_side_bar_tree(categories, selected=nil)
-
     li_s = []
 
     categories.keys.sort_by {|k| k.name }.each do |k|

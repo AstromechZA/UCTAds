@@ -15,12 +15,18 @@
     %small Choose a Category
 
 #top-nest-lvl.col-sm-10
+  %p
+    Pick a category for your Ad, remember that the more specific a category you
+    choose the easier it will be for someone to find it. If you want to suggest
+    a new category, or a modification to one, use
+    %a
+      this
+    form.
+
   = nested_categories_tree(@categories)
 
   %div{id: 'form_wrapper'}
     = form_for @advert, url: {action: 'new_ad_form', id: @advert} do |f|
       = f.hidden_field :category_id
-      %p
-        = link_to 'Cancel', adverts_path, class: 'btn btn-default'
 
 = javascript_include_tag 'advert_stage_one'
