@@ -25,8 +25,13 @@
             - if @adverts.empty?
               %tr
                 %td.text-center{colspan: 3}
-                  %i.fa.fa-frown-o
-                  = "Oops, no ads have been posted"
+                  %p
+                    %i.fa.fa-frown-o
+                    = "Oops, no ads have been posted"
+                  %p
+                    = "Change this by "
+                    = link_to "posting a new ad!", new_advert_path
+
             - else
               - @adverts.each do |advert|
                 %tr
