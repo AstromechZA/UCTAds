@@ -22,14 +22,16 @@ Uctads::Application.routes.draw do
   delete  '/adverts/:id',             to: 'adverts#destroy',            as: 'destroy_advert'
   post    '/adverts/new_ad_form',     to: 'adverts#new_ad_form',        as: 'new_ad_form_advert'
 
+  get     '/gallery/:id',             to: 'adverts#show_gallery',       as: 'show_gallery'
+
   # == uploads routing ==
-  get     '/uploads',           to: '/adverts#index',   as: 'uploads'
-  get     '/uploads/new',       to: '/adverts#new',     as: 'new_upload'
-  post    '/uploads',           to: '/adverts#create',  as: 'uploads'
-  get     '/uploads/:id',       to: '/adverts#show',    as: 'upload'
-  get     '/uploads/:id/edit',  to: '/adverts#edit',    as: 'edit_upload'
-  patch   '/uploads/:id',       to: '/adverts#update',  as: 'upload'
-  delete  '/uploads/:id',       to: '/adverts#destroy', as: 'upload'
+  get     '/uploads',           to: 'uploads#index',    as: 'uploads'
+  get     '/uploads/new',       to: 'uploads#new',      as: 'new_upload'
+  post    '/uploads',           to: 'uploads#create',   as: 'create_upload'
+  get     '/uploads/:id',       to: 'uploads#show',     as: 'show_upload'
+  get     '/uploads/:id/edit',  to: 'uploads#edit',     as: 'edit_upload'
+  patch   '/uploads/:id',       to: 'uploads#update',   as: 'update_upload'
+  delete  '/uploads/:id',       to: 'uploads#destroy',  as: 'destroy_upload'
 
   root 'adverts#index'
 

@@ -6,7 +6,7 @@
 
 
 #form-wrapper
-  = form_for @upload, html: {class: 'form-horizontal'} do |f|
+  = form_for @upload, url: create_upload_path(@upload), html: {class: 'form-horizontal'} do |f|
     .form-group
       = f.label :image, class: 'control-label'
       = f.file_field :image

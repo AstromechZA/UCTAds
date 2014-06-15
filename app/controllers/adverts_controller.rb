@@ -76,6 +76,11 @@ class AdvertsController < ApplicationController
     redirect_to adverts_path, notice: "'Advert #{advert.title}' removed."
   end
 
+  def show_gallery
+    @advert = Advert.find(params[:id])
+    @uploads = Upload.where(advert_id: params[:id])
+  end
+
   private
 
     def advert_category_param

@@ -11,9 +11,8 @@ class UploadsController < ApplicationController
   def create
     @upload = Upload.new(upload_params)
     if @upload.save
-      redirect_to @upload, notice: 'Upload uploaded'
+      redirect_to show_upload_path(@upload), notice: 'Upload uploaded'
     else
-
       render action: 'new'
     end
   end

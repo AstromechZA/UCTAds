@@ -6,6 +6,6 @@
 
 - @uploads.each do |upload|
   %p
-    = link_to image_tag(upload.image.url(:thumb)), upload
+    = link_to image_tag(upload.image.url(:thumb)), show_upload_path(upload)
 
 = link_to 'Add Upload', new_upload_path, {class: 'btn btn-success'}
