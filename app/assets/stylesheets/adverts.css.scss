@@ -56,7 +56,10 @@ textarea {
     }
 }
 
-.sidebar-categories {
+ul.sidebar-categories {
+    padding-left: 18px;
+    margin-bottom: 0px;
+
     ul {
         padding-left: 25px;
     }
