@@ -5,7 +5,7 @@
     = link_to 'Adverts', adverts_path
   - @breadcrumb.each do |b|
     %li
-      = b.name
+      = link_to b.name, adverts_by_category_path(b)
 
 .page-header
   %h2
