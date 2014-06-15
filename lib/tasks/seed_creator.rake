@@ -10,4 +10,24 @@ namespace :seed_creator do
 
   end
 
+
+  desc "Print out the existing ads in a way that can be put in db/seeds.rb"
+  task adverts: :environment do
+
+    params = [:title, :description, :fieldvalues, :price, :price_type]
+
+    Advert.all.each do |ad|
+
+        # build params
+        params_hash = {}
+        params.each {|p| params_hash[p] = ad[p]}
+
+        # turn into string and add category
+        params_string = params_hash.inspect.to_s
+        params_string = params_string[0..-2] + ", :category => cat_#{ad.category.id}" + '}'
+
+        puts "Advert.create(#{params_string})"
+    end
+
+  end
 end
