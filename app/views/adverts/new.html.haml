@@ -25,7 +25,7 @@
 
   = nested_categories_tree(@categories)
 
-  %div{id: 'form_wrapper'}
+  #form_wrapper
     = form_for @advert, url: new_ad_form_advert(@advert) do |f|
       = f.hidden_field :category_id
 
