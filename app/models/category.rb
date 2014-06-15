@@ -1,6 +1,8 @@
 class Category < ActiveRecord::Base
   acts_as_tree :order => 'name'
 
+  has_many :adverts
+
   serialize :fields, Hash
 
   validates :name, presence: {message: 'Category name cannot be blank'}

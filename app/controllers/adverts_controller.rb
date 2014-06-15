@@ -22,7 +22,9 @@ class AdvertsController < ApplicationController
       end
     end
 
-    @adverts = Advert.order(created_at: :desc)
+    ids = @selected_category.self_and_descendant_ids
+
+    @adverts = Advert.where(category_id: ids).order(created_at: :desc)
   end
 
   def new
