@@ -6,7 +6,11 @@
 
 .row
   .col-sm-3
-    = build_side_bar_tree(@category_tree)
+    .panel.panel-default
+      .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+        Categories
+      .panel-body
+        = build_side_bar_tree(@category_tree)
 
   .col-sm-9
     .panel.panel-default
