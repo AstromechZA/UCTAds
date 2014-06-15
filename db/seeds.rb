@@ -4,10 +4,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 cat_1 = Category.create(name: "Automotive", fields: {}, parent: nil)
-cat_2 = Category.create(name: "Cars", fields: {"Make"=>{"optional"=>false}, "Model"=>{"optional"=>false}, "Year"=>{"optional"=>true}, "Gearbox"=>{"optional"=>true, "sele
-ct"=>["Manual", "Automatic", "Tiptronic"]}, "Kilometers"=>{"optional"=>true}}, parent: cat_1)
-cat_3 = Category.create(name: "Motorcycles & Scooters", fields: {"Make"=>{"optional"=>false}, "Model"=>{"optional"=>false}, "Year"=>{"optional"=>false}, "Engine Capacity
-"=>{"optional"=>true}, "Kilometers"=>{"optional"=>true}}, parent: cat_1)
+cat_2 = Category.create(name: "Cars", fields: {"Make"=>{"optional"=>false}, "Model"=>{"optional"=>false}, "Year"=>{"optional"=>true}, "Gearbox"=>{"optional"=>true, "select"=>["Manual", "Automatic", "Tiptronic"]}, "Kilometers"=>{"optional"=>true}}, parent: cat_1)
+cat_3 = Category.create(name: "Motorcycles & Scooters", fields: {"Make"=>{"optional"=>false}, "Model"=>{"optional"=>false}, "Year"=>{"optional"=>false}, "Engine Capacity"=>{"optional"=>true}, "Kilometers"=>{"optional"=>true}}, parent: cat_1)
 cat_4 = Category.create(name: "Parts & Accessories", fields: {}, parent: cat_1)
 cat_5 = Category.create(name: "Electronics", fields: {}, parent: nil)
 cat_6 = Category.create(name: "Cellphones", fields: {}, parent: cat_5)
@@ -23,8 +21,7 @@ cat_15 = Category.create(name: "Fashion", fields: {}, parent: nil)
 cat_16 = Category.create(name: "Clothing", fields: {}, parent: cat_15)
 cat_17 = Category.create(name: "Shoes", fields: {}, parent: cat_15)
 cat_18 = Category.create(name: "Accessories", fields: {}, parent: cat_15)
-cat_19 = Category.create(name: "Books", fields: {"Title"=>{"optional"=>false}, "Author"=>{"optional"=>false}, "Publisher"=>{"optional"=>true}, "ISBN Number"=>{"optional"
-=>true}}, parent: nil)
+cat_19 = Category.create(name: "Books", fields: {"Title"=>{"optional"=>false}, "Author"=>{"optional"=>false}, "Publisher"=>{"optional"=>true}, "ISBN Number"=>{"optional"=>true}}, parent: nil)
 cat_20 = Category.create(name: "Textbooks", fields: {"Edition"=>{"optional"=>true}}, parent: cat_19)
 cat_21 = Category.create(name: "TVs & Projectors", fields: {}, parent: cat_5)
 cat_22 = Category.create(name: "Events", fields: {}, parent: nil)
