@@ -42,7 +42,7 @@ class AdvertsController < ApplicationController
   def create
     @advert = Advert.new(advert_form_params)
     if @advert.save
-        redirect_to show_advert_path(@advert), notice: "Advert successfully created."
+        redirect_to edit_gallery_path(@advert), notice: "Advert successfully created."
     else
         @fieldsdef = @advert.category.self_and_ancestors.map {|p| p.fields}.inject {|a,b| a.merge!(b)}
         render action: 'new_ad_form'

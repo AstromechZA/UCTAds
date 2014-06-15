@@ -26,7 +26,7 @@
   = nested_categories_tree(@categories)
 
   %div{id: 'form_wrapper'}
-    = form_for @advert, url: {action: 'new_ad_form', id: @advert} do |f|
+    = form_for @advert, url: new_ad_form_advert(@advert) do |f|
       = f.hidden_field :category_id
 
 = javascript_include_tag 'advert_stage_one'

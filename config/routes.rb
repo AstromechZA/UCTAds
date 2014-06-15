@@ -12,18 +12,26 @@ Uctads::Application.routes.draw do
   get '/categories/:id/ancestor_fields', to: 'categories#ancestor_fields'
 
   # == adverts routing ==
-  get '/adverts', to: 'adverts#index', as: 'adverts'
-  get '/adverts_by_category/:id', to: 'adverts#index_by_category', as: 'adverts_by_category'
-  post '/adverts', to: 'adverts#create', as: 'create_advert'
-  get '/adverts/new', to: 'adverts#new', as: 'new_advert'
-  get '/adverts/:id', to: 'adverts#show', as: 'show_advert'
-  get '/adverts/:id/edit', to: 'adverts#edit', as: 'edit_advert'
-  patch '/adverts/:id', to: 'adverts#update', as: 'update_advert'
-  delete '/adverts/:id', to: 'adverts#destroy', as: 'destroy_advert'
-  post '/adverts/new_ad_form', to: 'adverts#new_ad_form'
+  get     '/adverts',                 to: 'adverts#index',              as: 'adverts'
+  get     '/adverts_by_category/:id', to: 'adverts#index_by_category',  as: 'adverts_by_category'
+  post    '/adverts',                 to: 'adverts#create',             as: 'create_advert'
+  get     '/adverts/new',             to: 'adverts#new',                as: 'new_advert'
+  get     '/adverts/:id',             to: 'adverts#show',               as: 'show_advert'
+  get     '/adverts/:id/edit',        to: 'adverts#edit',               as: 'edit_advert'
+  patch   '/adverts/:id',             to: 'adverts#update',             as: 'update_advert'
+  delete  '/adverts/:id',             to: 'adverts#destroy',            as: 'destroy_advert'
+  post    '/adverts/new_ad_form',     to: 'adverts#new_ad_form',        as: 'new_ad_form_advert'
+
+  # == uploads routing ==
+  get     '/uploads',           to: '/adverts#index',   as: 'uploads'
+  get     '/uploads/new',       to: '/adverts#new',     as: 'new_upload'
+  post    '/uploads',           to: '/adverts#create',  as: 'uploads'
+  get     '/uploads/:id',       to: '/adverts#show',    as: 'upload'
+  get     '/uploads/:id/edit',  to: '/adverts#edit',    as: 'edit_upload'
+  patch   '/uploads/:id',       to: '/adverts#update',  as: 'upload'
+  delete  '/uploads/:id',       to: '/adverts#destroy', as: 'upload'
 
   root 'adverts#index'
 
-  resources :uploads
 
 end

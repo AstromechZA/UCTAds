@@ -20,14 +20,16 @@
               %i.fa.fa-mortar-board
               = "UCTAds"
           .collapse.navbar-collapse
+
+            %form.navbar-form.navbar-left.navbar-input-group.custom-form-sm{role: 'search'}
+              .form-group
+                %input.form-control.input-sm{size: 50, type: 'text', placeholder: 'Search ..'}
+              %button.btn.btn-info.btn-sm{type: 'submit'}= "Search"
+
             %ul.nav.navbar-nav
               %li.navbar-button-li
                 = button_to "Post an Ad!", new_advert_path, method: :get, class: "btn btn-success btn-sm navbar-btn"
 
-            %form.navbar-form.navbar-left.navbar-input-group.custom-form-sm{role: 'search'}
-              .form-group
-                %input.form-control.input-sm{type: 'text', placeholder: 'Search ..'}
-              %button.btn.btn-info.btn-sm{type: 'submit'}= "Search"
             %ul.nav.navbar-nav.navbar-right
               %li
                 %a item
