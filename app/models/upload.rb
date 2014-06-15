@@ -1,4 +1,5 @@
 class Upload < ActiveRecord::Base
+  belongs_to :advert
 
   has_attached_file :image, styles: {
     thumb: '100x100#',

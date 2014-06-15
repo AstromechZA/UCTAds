@@ -1,5 +1,6 @@
 class Advert < ActiveRecord::Base
   belongs_to :category
+  has_many :uploads
 
   serialize :fieldvalues, Hash
 
