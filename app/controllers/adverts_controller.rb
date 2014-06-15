@@ -51,6 +51,7 @@ class AdvertsController < ApplicationController
 
   def show
     @advert = Advert.find(params[:id])
+    @images = @advert.uploads
     @breadcrumb = @advert.category.ancestors.reverse + [@advert.category]
   end
 
@@ -79,6 +80,8 @@ class AdvertsController < ApplicationController
   def show_gallery
     @advert = Advert.find(params[:id])
     @uploads = Upload.where(advert_id: params[:id])
+    @new_upload = Upload.new
+    @new_upload.advert = @advert
   end
 
   private

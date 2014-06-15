@@ -23,6 +23,6 @@ class UploadsController < ApplicationController
 
   private
     def upload_params
-      params.require(:upload).permit(:image)
+      params.require(:upload).permit(:image, :advert_id)
     end
 end
