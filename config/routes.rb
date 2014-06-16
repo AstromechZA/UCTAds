@@ -23,16 +23,9 @@ Uctads::Application.routes.draw do
   post    '/adverts/new_ad_form',     to: 'adverts#new_ad_form',        as: 'new_ad_form_advert'
 
   get     '/adverts/:id/gallery/edit',    to: 'adverts#edit_gallery',       as: 'edit_gallery'
-
-  # show gallery (show selected image)
-  get     '/adverts/:id/gallery/:image',  to: 'adverts#show_gallery', as: 'show_gallery'
-
-  post    '/adverts/:id/upload_to_gallery', to: 'adverts#upload_to_gallery', as: 'upload_to_gallery'
+  post    '/adverts/:id/gallery/upload', to: 'adverts#upload_to_gallery', as: 'upload_to_gallery'
 
   # == uploads routing ==
-  get     '/uploads',           to: 'uploads#index',    as: 'uploads'
-  get     '/uploads/new',       to: 'uploads#new',      as: 'new_upload'
-  post    '/uploads',           to: 'uploads#create',   as: 'create_upload'
   get     '/uploads/:id',       to: 'uploads#show',     as: 'show_upload'
   get     '/uploads/:id/edit',  to: 'uploads#edit',     as: 'edit_upload'
   patch   '/uploads/:id',       to: 'uploads#update',   as: 'update_upload'

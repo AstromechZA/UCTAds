@@ -77,14 +77,6 @@ class AdvertsController < ApplicationController
     redirect_to adverts_path, notice: "'Advert #{advert.title}' removed."
   end
 
-  def show_gallery
-    @advert = Advert.find(params[:id])
-    @uploads = Upload.where(advert_id: params[:id])
-
-    selected_image_a = @uploads.select {|i| i.id == params[:image].to_i}
-    @selected_image = (selected_image_a.empty? ? @uploads.first : selected_image_a.first)
-  end
-
   def edit_gallery
     @advert = Advert.find(params[:id])
     @uploads = Upload.where(advert_id: params[:id])

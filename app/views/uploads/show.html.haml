@@ -1,12 +1,16 @@
 - title 'Image'
 
-.page-header
-  %h2
-    = 'Image'
+%ul.list-group
+  %li.list-group-item.item-heading
+    = "Image"
+  %li.list-group-item.text-center
+    = image_tag @upload.image.url(:original), class: 'img-rounded'
 
-- unless @upload.description.nil? or @upload.description.empty?
-  %p.text-center
-    = @upload.description
+  - unless @upload.description.nil? or @upload.description.empty?
+    %li.list-group-item.item-heading
+      = "Description"
+    %li.list-group-item.text-center
+      = @upload.description
 
-%p.text-center
-  = image_tag @upload.image.url(:original), class: 'img-rounded'
+= link_to "Back to Advert", show_advert_path(@upload.advert), class: 'btn btn-default btn-sm pull-right'
+
