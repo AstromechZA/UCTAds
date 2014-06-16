@@ -1,0 +1,27 @@
+- title 'Gallery'
+
+.page-header
+  %h2
+    = 'Gallery'
+
+- @uploads.each do |upload|
+  %p
+    = link_to image_tag(upload.image.url(:thumb)), show_upload_path(upload)
+
+#form-wrapper
+  = form_for @new_upload, url: create_upload_path(@new_upload), html: {class: 'form-horizontal'} do |f|
+
+    = f.hidden_field :advert_id, value: @new_upload.advert_id
+
+    .form-group
+      = f.label :image, class: 'control-label'
+      = f.file_field :image
+
+    - @new_upload.errors.each do |attribute, error|
+      .alert.alert-danger.alert-dismissable
+        %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-hidden' => 'true'}
+          &times;
+        = attribute
+        = error
+
+    = f.submit 'Create'

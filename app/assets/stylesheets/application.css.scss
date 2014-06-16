@@ -16,7 +16,6 @@
 
 $footer-height: 60px;
 
-
 html, body {
   height: 100%
 }
@@ -25,7 +24,7 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -$footer-height;
+  margin: 0 auto (-$footer-height);
   padding: 0 0  40px;
 }
 
@@ -48,7 +47,7 @@ html, body {
 }
 
 .page-header {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .better-select-box {
@@ -111,4 +110,17 @@ html, body {
       width:100%;
     }
   }
+}
+
+.img-bordered {
+  padding: 1px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
 }

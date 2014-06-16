@@ -20,13 +20,13 @@
     %ul.list-group
       %li.list-group-item.item-heading
         = "Images"
-      %li.list-group-item
+      %li.list-group-item.text-center
         - if @images.empty?
           .missing-images-text
             = "(No images added)"
         - else
           - @images.each do |image|
-            = link_to image_tag(image.image.url(:thumb)), show_upload_path(image)
+            = link_to image_tag(image.image.url(:thumb), class: 'img-bordered', alt: image.description), show_upload_path(image)
 
       %li.list-group-item.item-heading
         = "Description"

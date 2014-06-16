@@ -22,7 +22,8 @@ Uctads::Application.routes.draw do
   delete  '/adverts/:id',             to: 'adverts#destroy',            as: 'destroy_advert'
   post    '/adverts/new_ad_form',     to: 'adverts#new_ad_form',        as: 'new_ad_form_advert'
 
-  get     '/gallery/:id',             to: 'adverts#show_gallery',       as: 'show_gallery'
+  get     '/adverts/:id/gallery',     to: 'adverts#show_gallery',       as: 'show_gallery'
+  get     '/adverts/:id/gallery/edit',to: 'adverts#edit_gallery',       as: 'edit_gallery'
 
   # == uploads routing ==
   get     '/uploads',           to: 'uploads#index',    as: 'uploads'

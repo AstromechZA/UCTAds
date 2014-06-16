@@ -4,6 +4,9 @@
   %h2
     = 'Image'
 
-= image_tag @upload.image.url(:original)
-= image_tag @upload.image.url(:medium)
-= image_tag @upload.image.url(:thumb)
+- unless @upload.description.nil? or @upload.description.empty?
+  %p.text-center
+    = @upload.description
+
+%p.text-center
+  = image_tag @upload.image.url(:original), class: 'img-rounded'
