@@ -27,7 +27,7 @@
             = "(No images added)"
         - else
           - @images.each do |image|
-            = link_to image_tag(image.image.url(:thumb), class: 'img-bordered', alt: image.description), show_gallery_path(@advert, image)
+            = link_to image_tag(image.image.url(:thumb), {class: 'img-bordered', title: image.description}), show_gallery_path(@advert, image)
 
       %li.list-group-item.item-heading
         = "Description"
