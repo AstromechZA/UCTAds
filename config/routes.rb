@@ -27,6 +27,8 @@ Uctads::Application.routes.draw do
   # show gallery (show selected image)
   get     '/adverts/:id/gallery/:image',  to: 'adverts#show_gallery', as: 'show_gallery'
 
+  post    '/adverts/:id/upload_to_gallery', to: 'adverts#upload_to_gallery', as: 'upload_to_gallery'
+
   # == uploads routing ==
   get     '/uploads',           to: 'uploads#index',    as: 'uploads'
   get     '/uploads/new',       to: 'uploads#new',      as: 'new_upload'

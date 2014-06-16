@@ -20,6 +20,7 @@
     %ul.list-group
       %li.list-group-item.item-heading
         = "Images"
+        = link_to "(edit)", edit_gallery_path(@advert)
       %li.list-group-item.text-center
         - if @images.empty?
           .missing-images-text

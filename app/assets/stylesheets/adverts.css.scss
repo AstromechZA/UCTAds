@@ -27,12 +27,20 @@ textarea {
 
 .item-heading {
     background-color: #E3ECF3;
-    // font-weight: bold;
     padding: 5px 8px;
 }
 
 .panel-heading-sm {
     padding: 3px 10px;
+}
+
+.paragraph-heading {
+    margin-top: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 4px;
+    background-color: #F6FCFF;
+    border-bottom: 1px solid #dddddd;
 }
 
 .missing-images-text {

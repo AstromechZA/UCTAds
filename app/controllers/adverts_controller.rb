@@ -92,6 +92,15 @@ class AdvertsController < ApplicationController
     @new_upload.advert = @advert
   end
 
+  def upload_to_gallery
+    @upload = Upload.new(upload_params)
+    if @upload.save
+      redirect_to edit_gallery_path(@upload), notice: 'Image uploaded!'
+    else
+      render action: 'new'
+    end
+  end
+
   private
 
     def advert_category_param
@@ -104,4 +113,7 @@ class AdvertsController < ApplicationController
       return r
     end
 
+    def upload_params
+      params.require(:upload).permit(:image, :advert_id)
+    end
 end

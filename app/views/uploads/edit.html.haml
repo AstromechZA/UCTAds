@@ -1,0 +1,18 @@
+- title 'Edit Description'
+
+.page-header
+  %h2
+    = 'Edit Description'
+
+.row
+  .col-sm-4
+    %p.text-center
+      = image_tag @upload.image.url(:medium), class: 'img-rounded'
+
+  .col-sm-8
+    = form_for @upload, url: update_upload_path(@upload) do |f|
+      .form-group
+        = f.text_area :description, class: 'form-control', rows: 4
+
+      = f.submit 'Update Description', class: 'btn btn-primary btn-sm '
+      = link_to "Cancel", edit_gallery_path(@upload.advert), class: 'btn btn-default btn-sm'

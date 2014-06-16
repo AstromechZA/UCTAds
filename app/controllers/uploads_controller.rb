@@ -17,6 +17,19 @@ class UploadsController < ApplicationController
     end
   end
 
+  def edit
+    @upload = Upload.find(params[:id])
+  end
+
+  def update
+    @upload = Upload.find(params[:id])
+    if @upload.update_attributes(edit_upload_params)
+      redirect_to edit_gallery_path(@upload.advert), notice: "a"
+    else
+      render action: 'edit'
+    end
+  end
+
   def show
     @upload = Upload.find(params[:id])
   end
@@ -24,5 +37,9 @@ class UploadsController < ApplicationController
   private
     def upload_params
       params.require(:upload).permit(:image, :advert_id)
+    end
+
+    def edit_upload_params
+      params.require(:upload).permit(:description)
     end
 end
