@@ -4,41 +4,43 @@
   %h2
     = 'Edit Gallery'
 
-.col-sm-12
-  .panel.panel-default
-    .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
-      = "Images"
-    .table-responsive
-      %table.table.table-bordered
-        %col{style: "width: 120px"}
-        %col
-        %col{style: "width: 50px"}
-        %tbody
-          - @uploads.each do |upload|
-            %tr
-              %td
-                = image_tag upload.image.url(:thumb), class: 'img-bordered'
-              %td
-                %p.paragraph-heading
-                  Description
-                %p
-                  = upload.description
-                %p
-                  %small
-                    = link_to "(edit description)", edit_upload_path(upload)
-              %td
-                = link_to fa_icon('trash-o'), show_advert_path(@advert), class: 'btn btn-warning btn-block'
-
-  = form_for @new_upload, url: create_upload_path(@new_upload), html: {class: 'form-horizontal'} do |f|
-    = f.hidden_field :advert_id, value: @new_upload.advert_id
-
-    .panel.panel-default
-      .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
-        = "Add another image"
-      %table.table.table-bordered
-        %tbody
+.panel.panel-default
+  .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+    = "Images"
+  .table-responsive
+    %table.table.table-bordered
+      %col{style: "width: 120px"}
+      %col
+      %col{style: "width: 50px"}
+      %tbody
+        - @uploads.each do |upload|
           %tr
             %td
-              = f.file_field :image, style: 'padding: 5px'
+              = image_tag upload.image.url(:thumb), class: 'img-bordered'
             %td
-              = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
+              %p.paragraph-heading
+                Description
+              %p
+                = upload.description
+              %p
+                %small
+                  = link_to "(edit description)", edit_upload_path(upload)
+            %td
+              = link_to fa_icon('trash-o'), show_advert_path(@advert), class: 'btn btn-warning btn-block'
+
+= form_for @new_upload, url: create_upload_path(@new_upload), html: {class: 'form-horizontal'} do |f|
+  = f.hidden_field :advert_id, value: @new_upload.advert_id
+
+  .panel.panel-default
+    .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+      = "Add another image"
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %td
+            = f.file_field :image, style: 'padding: 5px'
+          %td
+            = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
+
+= link_to "Back to Advert", show_advert_path(@advert), class: 'btn btn-default btn-sm pull-right'
+
