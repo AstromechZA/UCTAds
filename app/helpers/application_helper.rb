@@ -19,4 +19,6 @@ module ApplicationHelper
     truncate(text, length: limit, separator: ' ')
   end
 
+
+
 end

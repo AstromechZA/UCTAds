@@ -4,17 +4,17 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
   end
 
+  def show
+    @upload = Upload.find(params[:id])
+  end
+
   def update
     @upload = Upload.find(params[:id])
     if @upload.update_attributes(edit_upload_params)
-      redirect_to edit_gallery_path(@upload.advert), notice: "a"
+      redirect_to edit_gallery_path(@upload.advert), notice: "Updated description of image."
     else
       render action: 'edit'
     end
-  end
-
-  def show
-    @upload = Upload.find(params[:id])
   end
 
   def destroy

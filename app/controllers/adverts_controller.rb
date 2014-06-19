@@ -87,9 +87,9 @@ class AdvertsController < ApplicationController
   def upload_to_gallery
     @upload = Upload.new(upload_params)
     if @upload.save
-      redirect_to edit_gallery_path(@upload.advert), notice: 'Image uploaded!'
+      redirect_to edit_gallery_path(@upload.advert), notice: 'Image Uploaded!'
     else
-      redirect_to edit_gallery_path(@upload.advert), notice: 'Upload failed'
+      redirect_to edit_gallery_path(@upload.advert), alert: "Upload Failed. #{get_error_string(@upload)}"
     end
   end
 
@@ -107,5 +107,9 @@ class AdvertsController < ApplicationController
 
     def upload_params
       params.require(:upload).permit(:image, :advert_id)
+    end
+
+    def get_error_string(obj)
+      obj.errors.map {|a, e| "#{a} : #{e}. "}.join
     end
 end
