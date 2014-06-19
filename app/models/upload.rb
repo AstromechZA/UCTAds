@@ -8,4 +8,6 @@ class Upload < ActiveRecord::Base
   }
 
   validates_attachment_content_type :image, :content_type => /^image\/(png|jpeg|jpg)/
+  validates :image, presence: true
+
 end

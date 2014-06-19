@@ -10,7 +10,7 @@
     %li.list-group-item.item-heading
       = "Description"
     %li.list-group-item.text-center
-      = @upload.description
+      = raw simple_format @upload.description
 
 = link_to "Back to Advert", show_advert_path(@upload.advert), class: 'btn btn-default btn-sm pull-right'
 

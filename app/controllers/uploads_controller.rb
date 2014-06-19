@@ -17,6 +17,12 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
   end
 
+  def destroy
+    upload = Upload.find(params[:id])
+    upload.delete
+    redirect_to edit_gallery_path(upload.advert), notice: "Image removed."
+  end
+
   private
     def edit_upload_params
       params.require(:upload).permit(:description)

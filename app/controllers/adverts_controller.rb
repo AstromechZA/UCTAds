@@ -87,9 +87,9 @@ class AdvertsController < ApplicationController
   def upload_to_gallery
     @upload = Upload.new(upload_params)
     if @upload.save
-      redirect_to edit_gallery_path(@upload), notice: 'Image uploaded!'
+      redirect_to edit_gallery_path(@upload.advert), notice: 'Image uploaded!'
     else
-      render action: 'new'
+      redirect_to edit_gallery_path(@upload.advert), notice: 'Upload failed'
     end
   end
 
