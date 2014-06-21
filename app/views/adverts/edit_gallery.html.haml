@@ -6,9 +6,11 @@
 
 = render 'layouts/messages'
 
-.progress
-  .progress-bar{role: 'progressbar', aria: {valuenow: @upload_count, valuemin: 0, valuemax: @upload_max}, style: "width: #{@upload_percent}%"}
-    = "#{@upload_count} / #{@upload_max} images"
+.progress-label
+  = "#{@upload_count} / #{@upload_max} images :"
+.progress.progress-striped
+  .progress-bar.progress-bar-info{role: 'progressbar', aria: {valuenow: @upload_count, valuemin: 0, valuemax: @upload_max}, style: "width: #{@upload_percent}%"}
+
 
 - unless @uploads.empty?
   .panel.panel-default
