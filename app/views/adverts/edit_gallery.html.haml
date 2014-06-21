@@ -10,29 +10,30 @@
   .progress-bar{role: 'progressbar', aria: {valuenow: @upload_count, valuemin: 0, valuemax: @upload_max}, style: "width: #{@upload_percent}%"}
     = "#{@upload_count} / #{@upload_max} images"
 
-.panel.panel-default
-  .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
-    = "Images"
-  .table-responsive
-    %table.table.table-bordered
-      %col{style: "width: 120px"}
-      %col
-      %col{style: "width: 50px"}
-      %tbody
-        - @uploads.each do |upload|
-          %tr
-            %td
-              = image_tag upload.image.url(:thumb), class: 'img-bordered'
-            %td
-              %p.paragraph-heading
-                Description
-              %p
-                = upload.description
-              %p
-                %small
-                  = link_to "(edit description)", edit_upload_path(upload)
-            %td
-              = link_to fa_icon('trash-o'), destroy_upload_path(upload), method: :delete, data: {confirm: 'Are you sure you want to delete the image?'}, class: 'btn btn-warning btn-block'
+- unless @uploads.empty?
+  .panel.panel-default
+    .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+      = "Images"
+    .table-responsive
+      %table.table.table-bordered
+        %col{style: "width: 120px"}
+        %col
+        %col{style: "width: 50px"}
+        %tbody
+          - @uploads.each do |upload|
+            %tr
+              %td
+                = image_tag upload.image.url(:thumb), class: 'img-bordered'
+              %td
+                %p.paragraph-heading
+                  Description
+                %p
+                  = upload.description
+                %p
+                  %small
+                    = link_to "(edit description)", edit_upload_path(upload)
+              %td
+                = link_to fa_icon('trash-o'), destroy_upload_path(upload), method: :delete, data: {confirm: 'Are you sure you want to delete the image?'}, class: 'btn btn-warning btn-block'
 
 - unless @new_upload.nil?
   = form_for @new_upload, url: upload_to_gallery_path, html: {class: 'form-horizontal'} do |f|
