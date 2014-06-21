@@ -4,7 +4,7 @@
   %li.list-group-item.item-heading
     = "Image"
   %li.list-group-item.text-center
-    = image_tag @upload.image.url(:original), class: 'img-rounded'
+    = image_tag @upload.image.url(:original), class: 'img-rounded', style: 'max-width: 100%'
 
   - unless @upload.description.nil? or @upload.description.empty?
     %li.list-group-item.item-heading

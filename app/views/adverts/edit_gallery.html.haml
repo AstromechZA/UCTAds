@@ -41,14 +41,13 @@
     .panel.panel-default
       .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
         = "Add another image"
-      .table-responsive
-        %table.table.table-bordered
-          %tbody
-            %tr
-              %td
-                = f.file_field :image, style: 'padding: 5px'
-              %td
-                = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
+      %table.table.table-bordered
+        %tbody
+          %tr
+            %td
+              = f.file_field :image, style: 'padding: 5px'
+            %td
+              = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
 
 = link_to "Back to Advert", show_advert_path(@advert), class: 'btn btn-default btn-sm pull-right'
 
