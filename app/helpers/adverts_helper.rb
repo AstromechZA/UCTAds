@@ -14,6 +14,18 @@ module AdvertsHelper
     content_tag(:ul, li_s.join.html_safe)
   end
 
+  def build_side_bar(categories, selected=nil)
+    style = selected.nil? ? 'font-weight: bold' : ''
+    content = content_tag(:span, nil) + link_to("All", adverts_path, style: style)
+    content = content_tag(:div, content)
+    content = content_tag(:li, content)
+    html = content_tag(:ul, content.html_safe, class: 'sidebar-categories')
+
+    html += build_side_bar_tree(categories, selected)
+
+    html
+  end
+
   def build_side_bar_tree(categories, selected=nil)
     li_s = []
 
