@@ -36,8 +36,12 @@
               - @adverts.each do |advert|
                 %tr
                   %td.text-center{style: "vertical-align: middle;"}
-                    %h3
-                      %i.fa.fa-photo
+                    - fi = advert.uploads.take
+                    - unless fi.nil?
+                      = image_tag fi.image.url(:thumb), class: 'img-bordered'
+                    - else
+                      %h3
+                        %i.fa.fa-photo
                   %td
                     = link_to advert.title, show_advert_path(advert)
                     %p
