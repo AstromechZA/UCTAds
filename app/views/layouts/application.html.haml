@@ -22,7 +22,7 @@
           .collapse.navbar-collapse
             = form_tag adverts_path, method: 'get', id: 'search-form', class: 'navbar-form navbar-left navbar-input-group custom-form-sm' do
               .form-group
-                = text_field_tag :search, params[:search], class: 'form-control input-sm', placeholder: 'Search ..'
+                = text_field_tag :search, params[:search], size: 50, class: 'form-control input-sm', placeholder: 'Search ..'
                 %button.btn.btn-info.btn-sm{type: 'submit'}= "Search"
 
             %ul.nav.navbar-nav
