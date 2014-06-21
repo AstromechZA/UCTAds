@@ -4,6 +4,10 @@
   %h2
     = "Adverts"
 
+- if @was_search
+  %p
+    = "You searched for '#{@search_text}'"
+
 .row
   .col-sm-3
     .panel.panel-default

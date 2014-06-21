@@ -1,10 +1,17 @@
 class Advert < ActiveRecord::Base
+  include PgSearch
+
   belongs_to :category
   has_many :uploads
 
   serialize :fieldvalues, Hash
 
   validate :title_must_be_valid, :description_must_be_valid, :all_fields_must_match_fielddefs, :price_must_be_valid
+
+  pg_search_scope :search_full_text, :against => {
+    title: 'A',
+    description: 'B',
+  }
 
   PRICE_TYPES = {'exact' => 'Exact Price', 'poa' => 'On Application', 'swap' => 'To Swap', 'free' => 'Free'}
 

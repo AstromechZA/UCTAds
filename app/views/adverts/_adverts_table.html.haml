@@ -8,7 +8,7 @@
         %col
         %col{style: "width: 10%"}
         %tbody
-          - if @adverts.empty?
+          - if @adverts.count(:all) == 0
             %tr
               %td.text-center{colspan: 3}
                 %p

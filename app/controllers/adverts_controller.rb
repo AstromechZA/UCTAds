@@ -1,7 +1,17 @@
 class AdvertsController < ApplicationController
 
   def index
-    @adverts = Advert.order(created_at: :desc)
+
+
+    if params[:search]
+      @was_search = true
+      @search_text = params[:search]
+      @adverts = Advert.search_full_text(params[:search])
+    else
+      @was_search = false
+      @adverts = Advert.order(created_at: :desc)
+    end
+
 
     #nested category tree
     @category_tree = {}
@@ -100,6 +110,10 @@ class AdvertsController < ApplicationController
     else
       redirect_to edit_gallery_path(@upload.advert), alert: "Upload Failed. #{get_error_string(@upload)}"
     end
+  end
+
+  def search
+
   end
 
   private
