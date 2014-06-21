@@ -7,8 +7,9 @@ class Upload < ActiveRecord::Base
     original: '800x600>'
   }
 
-  validates_attachment_content_type :image, :content_type => /^image\/(png|jpeg|jpg)/
   validates :image, presence: true
+  validates_attachment_content_type :image, :content_type => /^image\/(png|jpeg|jpg)/
+  validates_attachment_size :image, :in => 0.megabytes..2.megabytes
   validates :advert, presence: true
   validate :max_uploads_per_advert
 
