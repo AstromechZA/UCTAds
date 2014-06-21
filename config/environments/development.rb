@@ -33,6 +33,7 @@ Uctads::Application.configure do
       :bucket => 'uct-ads-images-1',
       :access_key_id => 'AKIAJ4WLYAIWP67TY5AQ',
       :secret_access_key => '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',
+      :persistant => false
     }
   }
 

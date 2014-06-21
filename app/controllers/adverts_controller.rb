@@ -80,8 +80,17 @@ class AdvertsController < ApplicationController
   def edit_gallery
     @advert = Advert.find(params[:id])
     @uploads = Upload.where(advert_id: params[:id])
-    @new_upload = Upload.new
-    @new_upload.advert = @advert
+
+    @upload_max = Upload.MAX_PER_ADVERT
+    @upload_count = @uploads.length
+    @upload_percent = ((@upload_count / @upload_max.to_f) * 100).to_i
+
+    if @upload_count < @upload_max
+      @new_upload = Upload.new
+      @new_upload.advert = @advert
+    else
+      @new_upload = nil
+    end
   end
 
   def upload_to_gallery

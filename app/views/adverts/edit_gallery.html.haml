@@ -6,6 +6,10 @@
 
 = render 'layouts/messages'
 
+.progress
+  .progress-bar{role: 'progressbar', aria: {valuenow: @upload_count, valuemin: 0, valuemax: @upload_max}, style: "width: #{@upload_percent}%"}
+    = "#{@upload_count} / #{@upload_max} images"
+
 .panel.panel-default
   .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
     = "Images"
@@ -30,19 +34,20 @@
             %td
               = link_to fa_icon('trash-o'), destroy_upload_path(upload), method: :delete, data: {confirm: 'Are you sure you want to delete the image?'}, class: 'btn btn-warning btn-block'
 
-= form_for @new_upload, url: upload_to_gallery_path, html: {class: 'form-horizontal'} do |f|
-  = f.hidden_field :advert_id, value: @new_upload.advert_id
-  .panel.panel-default
-    .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
-      = "Add another image"
-    .table-responsive
-      %table.table.table-bordered
-        %tbody
-          %tr
-            %td
-              = f.file_field :image, style: 'padding: 5px'
-            %td
-              = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
+- unless @new_upload.nil?
+  = form_for @new_upload, url: upload_to_gallery_path, html: {class: 'form-horizontal'} do |f|
+    = f.hidden_field :advert_id, value: @new_upload.advert_id
+    .panel.panel-default
+      .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
+        = "Add another image"
+      .table-responsive
+        %table.table.table-bordered
+          %tbody
+            %tr
+              %td
+                = f.file_field :image, style: 'padding: 5px'
+              %td
+                = f.submit 'Upload', class: 'btn btn-info btn-sm btn-block'
 
 = link_to "Back to Advert", show_advert_path(@advert), class: 'btn btn-default btn-sm pull-right'
 
