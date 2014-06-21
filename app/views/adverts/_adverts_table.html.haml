@@ -36,7 +36,7 @@
                   %small.text-muted
                     %em
                       = "Posted #{time_ago_in_words(advert.created_at)} ago :"
-                    = advert.category.name
+                      = link_to advert.category.name, adverts_by_category_path(advert.category)
                 %td.text-center{style: "vertical-align: middle;"}
                   %h4
                     - if advert.price_type == 'exact'
