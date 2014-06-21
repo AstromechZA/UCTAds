@@ -25,7 +25,7 @@
           - @uploads.each do |upload|
             %tr
               %td
-                = image_tag upload.image.url(:thumb), class: 'img-bordered'
+                = link_to image_tag(upload.image.url(:thumb), class: 'img-bordered'), show_upload_path(upload)
               %td
                 %p.paragraph-heading
                   Description
