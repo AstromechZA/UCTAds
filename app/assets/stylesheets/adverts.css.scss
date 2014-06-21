@@ -72,3 +72,10 @@ ul.sidebar-categories {
         padding-left: 25px;
     }
 }
+
+.adverts-table p.advert-description {
+    @media (max-width: 767px) {
+        width: 500px;
+        white-space: normal;
+    }
+}

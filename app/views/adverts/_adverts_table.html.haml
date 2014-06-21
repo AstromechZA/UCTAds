@@ -2,7 +2,7 @@
   .panel.panel-default
     .panel-heading.item-heading{style: 'background-color: #E3ECF3'}
       = "Ads"
-    .table-responsive
+    .table-responsive.adverts-table
       %table.table.table-bordered
         %col{style: "width: 120px"}
         %col
@@ -31,7 +31,7 @@
 
                 %td
                   = link_to advert.title, show_advert_path(advert)
-                  %p
+                  %p.advert-description
                     = text_truncate advert.description, 200
                   %small.text-muted
                     %em
